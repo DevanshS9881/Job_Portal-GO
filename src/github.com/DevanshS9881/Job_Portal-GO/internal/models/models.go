@@ -34,6 +34,3 @@ type Jobs struct{
 	Status string
 	UserId uint
 }
-
-
-
