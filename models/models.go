@@ -11,9 +11,10 @@ type LoginResponse struct{
 }
 type User struct{
 	gorm.Model
+	ID uint
 	Email string `gorm:"uniqueIndex"`
 	Password string `gorm:"not null"`
-	Role string
+	//Role string
 	//Profile Profile
 	//Jobs []Jobs
 }
