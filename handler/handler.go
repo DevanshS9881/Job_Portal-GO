@@ -1,11 +1,16 @@
 package handler
-import(
+
+import (
+	"context"
+	"io/ioutil"
+	"net/http"
 	"time"
-    "github.com/gofiber/fiber/v2"
-	jtoken"github.com/golang-jwt/jwt/v4"
+
 	"github.com/DevanshS9881/Job_Portal-GO/config"
 	"github.com/DevanshS9881/Job_Portal-GO/models"
 	"github.com/DevanshS9881/Job_Portal-GO/repository"
+	"github.com/gofiber/fiber/v2"
+	jtoken "github.com/golang-jwt/jwt/v4"
 )
 func Login(c *fiber.Ctx) error{
 	loginRequest:=new(models.LoginRequest)
@@ -37,3 +42,43 @@ func Login(c *fiber.Ctx) error{
 		email:= claims["email"].(string)
 		return c.SendString("Welcom "+email)
 	}
+
+	func GoogleLogin(c *fiber.Ctx) error {
+
+		url := config.AppConfig.GoogleLoginConfig.AuthCodeURL("randomstate")
+	
+		//c.Status(fiber.StatusSeeOther)
+		return c.Redirect(url,fiber.StatusSeeOther)
+		//	return c.JSON(url)
+    }
+
+	func GoogleCallback(c *fiber.Ctx) error {
+		state := c.Query("state")
+		if state != "randomstate" {
+			return c.SendString("States don't Match!!")
+		}
+	
+		code := c.Query("code")
+	
+		googlecon := config.GoogleConfig()
+	
+		token, err := googlecon.Exchange(context.Background(), code)
+		if err != nil {
+			return c.SendString("Code-Token Exchange Failed")
+		}
+	
+		resp, err := http.Get("https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + token.AccessToken)
+		if err != nil {
+			return c.SendString("Cannot retrieve the user data")
+		}
+		defer resp.Body.Close()
+	
+		userData, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return c.SendString("JSON Parsing Failed")
+		}
+	
+		return c.SendString(string(userData))
+	
+	}
+	

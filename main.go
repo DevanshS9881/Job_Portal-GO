@@ -12,7 +12,11 @@ import(
 func main(){
 	app:=fiber.New()
 	jwt:=middlewares.AuthMiddle(config.Secret)
+	config.GoogleConfig()
 	app.Post("/login",handler.Login)
 	app.Get("/protected",jwt,handler.Protected)
-	app.Listen(":4000")
+	app.Get("/google_login", handler.GoogleLogin)
+    app.Get("/google_callback", handler.GoogleCallback)
+	app.Listen(":8080")
+
 }
