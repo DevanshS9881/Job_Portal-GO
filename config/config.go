@@ -33,3 +33,12 @@ func GoogleConfig() oauth2.Config {
 
     return AppConfig.GoogleLoginConfig
 }
+
+//To load .env variables
+func load(key string) string{
+    err := godotenv.Load(".env")
+    if err != nil {
+        log.Fatalf("Some error occured. Err: %s", err)
+    }
+    return os.Getenv((key))
+}
