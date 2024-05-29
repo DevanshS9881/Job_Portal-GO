@@ -11,27 +11,51 @@ type LoginResponse struct{
 }
 type User struct{
 	gorm.Model
-	ID uint
-	Email string `gorm:"uniqueIndex"`
-	Password string `gorm:"not null"`
-	//Role string
-	//Profile Profile
+	Name string`json:"Name"`
+	Email string `json:"Email"`
+	Password string `json:"Password"`
+	Role string     `josn:"Role"`
+	Employer Employer
+	Employee Employee
 	//Jobs []Jobs
 }
-type Profile struct{
-    gorm.Model
-	Name string
-	User_Name string
-	Location string
-	UserID uint
+type Employee struct{
+	gorm.Model
+    UserID uint `json:"UserID"`
+	Name string `json:"Name"`
+	//User_Name string `json:"Username"`
+	UserRole string `json:"Role"`
+	City string  `json:"City"`
+	Birth_Date string `json:"BirthDate"`
+	Age uint `json:"Age"`
+	Bio string `json:"Bio"`
+	Skill string `json:"Skill"`
+}
+type Employer struct{
+	gorm.Model
+	UserID uint `json:"UserID"`
+	Name string `json:"Name"`
+	//User_Name string `json:"Username"`
+	UserRole string `json:"Role"`
+	City string  `json:"City"`
+	Birth_Date string `json:"BirthDate"`
+	Age uint `json:"Age"`
+	Company string `json:"Company"`
+	Jobs []Jobs
 }
 type Jobs struct{
 	gorm.Model
-	Post string
-    Comapny string
+	EmployerID uint 
 	Profile string
-	Place string
+    Comapny string
+	Experience string
+	//Desc string
+	Location string
 	Salary int64
 	Status string
-	UserId uint
+}
+type Vacancy struct{
+	gorm.Model
+	JobsProfile string
+	Vacancies string
 }

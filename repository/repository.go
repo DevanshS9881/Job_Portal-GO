@@ -7,7 +7,7 @@ import(
 func Find(email,password string) (*models.User,error){
 	if email=="test@gmail.com" && password=="pass1234"{
 		return &models.User{
-			ID :1,
+			//ID :1,
 			Email: "test@gmail.com",
 			Password: "pass1234",
 		},nil

@@ -24,8 +24,8 @@ func GoogleConfig() oauth2.Config {
 
     AppConfig.GoogleLoginConfig = oauth2.Config{
         RedirectURL:  "http://localhost:8080/google_callback",
-        ClientID:     os.Getenv("GOOGLE_CLIENT_ID"),
-        ClientSecret: os.Getenv("GOOGLE_CLIENT_SECRET"),
+        ClientID:     Load("GOOGLE_CLIENT_ID"),
+        ClientSecret: Load("GOOGLE_CLIENT_SECRET"),
         Scopes: []string{"https://www.googleapis.com/auth/userinfo.email",
             "https://www.googleapis.com/auth/userinfo.profile"},
         Endpoint: google.Endpoint,
@@ -35,10 +35,10 @@ func GoogleConfig() oauth2.Config {
 }
 
 //To load .env variables
-func load(key string) string{
+func Load(key string) string{
     err := godotenv.Load(".env")
     if err != nil {
         log.Fatalf("Some error occured. Err: %s", err)
     }
-    return os.Getenv((key))
+    return os.Getenv(key)
 }
