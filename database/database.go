@@ -32,7 +32,7 @@ func InitDB() error{
 		return err
 	}
 	fmt.Println("Successfully connected to the database")
-	Db.AutoMigrate(&models.User{},&models.Jobs{})
+	Db.AutoMigrate(&models.User{},&models.Jobs{},&models.Employer{},&models.Employee{})
     return nil
 }	
 // func CreateUser(name,email,password,role string) (models.User,error){

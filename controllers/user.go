@@ -4,6 +4,7 @@ import (
 	"github.com/DevanshS9881/Job_Portal-GO/database"
 	"github.com/DevanshS9881/Job_Portal-GO/models"
 	"github.com/gofiber/fiber/v2"
+	"fmt"
 )
 
 func Register(c *fiber.Ctx) error {
@@ -34,61 +35,97 @@ func Register(c *fiber.Ctx) error {
 func UpdateProfileEmployee(c *fiber.Ctx) error {
 	var newUser models.Employee
 	userID := database.Convert(c.Params("id"))
-	if err := c.BodyParser(newUser); err != nil {
+	fmt.Println(userID)
+	if err := c.BodyParser(&newUser); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"Error": err.Error(),
 		})
 	}
 	newUser.UserID = userID
-	result := database.Db.Create(&newUser)
-	if result.Error != nil {
-		c.Status(400).JSON(&fiber.Map{
-			"data":    nil,
-			"success": false,
-			"message": result.Error,
-		})
-		return result.Error
+	 var existingUser models.User
+	if err:=database.Db.First(&existingUser,"id=?",userID).Error;err!=nil{
+		return c.Status(400).JSON(fiber.Map{"Error":err.Error})
 	}
-
-	c.Status(200).JSON(&fiber.Map{
+    database.Db.First(&existingUser,userID)
+	var existingEmployee models.Employee
+	if err:=database.Db.First(&existingEmployee,"user_id=?",userID).Error;err!=nil{
+		result := database.Db.Create(&newUser)
+		if result.Error != nil {
+            return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+                "data":    nil,
+                "success": false,
+                "message": result.Error.Error(),
+            })
+        }
+	}else{
+		result := database.Db.Model(&existingEmployee).Updates(newUser)
+        if result.Error != nil {
+            return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+                "data":    nil,
+                "success": false,
+                "message": result.Error.Error(),
+            })
+        }
+	}
+	
+	
+		return c.Status(200).JSON(&fiber.Map{
 		"data":    newUser,
 		"success": true,
 		"message": "Successfully Updated",
 	})
-	return nil
 
 }
 
 func UpdateProfileEmployer(c *fiber.Ctx) error {
 	var newUser models.Employer
 	userID := database.Convert(c.Params("id"))
-	if err := c.BodyParser(newUser); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+	if err := c.BodyParser(&newUser); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(&fiber.Map{
 			"Error": err.Error(),
 		})
 	}
 	newUser.UserID = userID
-	result := database.Db.Create(&newUser)
-	if result.Error != nil {
-		c.Status(400).JSON(&fiber.Map{
-			"data":    nil,
-			"success": false,
-			"message": result.Error,
-		})
-		return result.Error
+	var existingUser models.User
+	if err:=database.Db.First(&existingUser,"id=?",userID).Error;err!=nil{
+		return c.Status(400).JSON(fiber.Map{ "Error":"User Not Found"})
 	}
-
-	c.Status(200).JSON(&fiber.Map{
+	var existingEmployer models.Employer
+	if err:=database.Db.First(&existingEmployer,"user_id=?",userID).Error;err!=nil{
+		result := database.Db.Create(&newUser)
+		if result.Error != nil {
+            return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+                "data":    nil,
+                "success": false,
+                "message": result.Error.Error(),
+            })
+        }
+	}else{
+		result := database.Db.Model(&existingEmployer).Updates(newUser)
+        if result.Error != nil {
+            return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+                "data":    nil,
+                "success": false,
+                "message": result.Error.Error(),
+            })
+        }
+	}
+	
+	
+		return c.Status(200).JSON(&fiber.Map{
 		"data":    newUser,
 		"success": true,
 		"message": "Successfully Updated",
 	})
-	return nil
+	
 
 }
 
 func ShowProfile(c *fiber.Ctx) error {
 	userID := database.Convert(c.Params("id"))
+	// if err!=nil{
+	// 	c.Status(400).JSON(fiber.Map{ "Error":"Invalid User ID"})
+	// }
 	var user models.User
 	result := database.Db.Preload("Employee").Preload("Employee").First(&user, userID)
 	if result.Error != nil {

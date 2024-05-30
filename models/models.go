@@ -15,8 +15,8 @@ type User struct{
 	Email string `json:"Email"`
 	Password string `json:"Password"`
 	Role string     `josn:"Role"`
-	Employer Employer
-	Employee Employee
+	Employer Employer `gorm:"foreignKey:UserID"`
+	Employee Employee  `gorm:"foreignKey:UserID"`
 	//Jobs []Jobs
 }
 type Employee struct{

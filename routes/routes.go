@@ -7,6 +7,7 @@ import (
 
 func SetRoutes(app *fiber.App){
 	app.Post("/register",controllers.Register)
-	app.Post("/updateEmployee/:id",controllers.UpdateProfileEmployee)
-	app.Get("/updateEmployer/:id",controllers.UpdateProfileEmployer)
+	app.Post("/updateProfileEmployee/:id",controllers.UpdateProfileEmployee)
+	app.Post("/updateProfileEmployer/:id",controllers.UpdateProfileEmployer)
+	app.Get("/getProfile/:id",controllers.ShowProfile)
  }
