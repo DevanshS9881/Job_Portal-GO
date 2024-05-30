@@ -43,6 +43,10 @@ func UpdateProfileEmployee(c *fiber.Ctx) error {
 	}
 	newUser.UserID = userID
 	 var existingUser models.User
+	 
+	 //checking whether the user exists or not
+	 //if exits then update the record otherwise create it
+	 
 	if err:=database.Db.First(&existingUser,"id=?",userID).Error;err!=nil{
 		return c.Status(400).JSON(fiber.Map{"Error":err.Error})
 	}
