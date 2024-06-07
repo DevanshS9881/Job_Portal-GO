@@ -1,7 +1,11 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+
 	//"gorm.io/driver/postgres"
 	//"gorm.io/gorm"
 	//"log"
@@ -19,13 +23,21 @@ func main(){
 		panic("Connection failed to databse")
 	}
 	jwt:=middlewares.AuthMiddle(config.Secret)
+	app.Use(cors.New(cors.Config{
+        AllowOrigins: "http://127.0.0.1:3000",
+        AllowHeaders: "Origin, Content-Type, Accept, Authorization",
+    }))
 	config.GoogleConfig()
+	app.Static("/", "/frontend")
 	app.Post("/login",handler.Login)
 	app.Get("/protected",jwt,handler.Protected)
 	app.Get("/google_login", handler.GoogleLogin)
-    app.Get("/google_callback", handler.GoogleCallback)
+    app.Get("/google_callback",handler.GoogleCallback)
 	routes.SetRoutes(app)
-	app.Listen(":8080")
+	err := app.Listen(":8081")
+	if err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 
 
 }

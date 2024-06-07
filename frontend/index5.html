@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style5.css">
+    <link rel="icon" href="/favicon.ico"  type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="content">
+            <div class="logo-container">
+                <img class="image" src="logo.png"><h2> Jobkart</h2>
+            </div>
+            
+            <div class="sidetext">
+                <h2>Welcome!<br><span>To our Website</span></h2>
+                <p>Finding the right job made easy with Jobkart. Register Now and Apply to the best jobs. Get Headhunted By Top Recruiters and Find the Right Job On Jobkart. Register Now.</p>
+            </div>
+        </div>
+
+
+        <div class="loginBox">
+            <div class="registerForm signup">
+                <form action="#">
+                    <h2>Sign Up</h2>    
+                    <div class="inputBox">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input type="text" id="name" required>
+                        <label>Name</label>
+                    </div>
+                    <div class="inputBox">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input type="text" id="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="inputBox">
+                        <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+                        <input type="password" id="password" required>
+                        <label>Password</label>
+                    </div>
+                    <button type="submit " id="signupBt">Sign Up</button>
+                    <div class="login">
+                        <h4> OR </h4>
+                    <button type="submit" id="googleUp">Continue with<i class='bx bxl-google' style='color:rgba(0,0,0,0.72)'  ></i></button>
+                        <p> Already have an acoount ? <a href="#" class="loginAsk"> Login </a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="registerForm login">
+                <form action="#">
+                    <h2>Sign In</h2>
+                    <div class="inputBox">
+                        <span class="icon"><i class='bx bxs-envelope'></i></span>
+                        <input type="email" id="emailLogin" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="inputBox">
+                        <span class="icon"><i class='bx bxs-lock-alt'></i></span>
+                        <input type="password" id="passwordLogin" required>
+                        <label>Password</label>
+                    </div>
+                    
+                    <button type="submit " id="loginBt">Sign In</button>
+                    <div class="login">
+                    <h4> OR </h4>
+                    <button id="googleIn">Continue with<i class='bx bxl-google' style='color:rgba(0,0,0,0.72)'  ></i></button>
+                    
+                        <p> Don't have an acoount ? <a href="#" class="signupAsk"> Sign Up </a></p>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+        
+    </div>
+    <script src="script5.js"></script>
+</body>
+
+</html>

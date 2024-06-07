@@ -1,10 +1,16 @@
 package controllers
 
 import (
+	"fmt"
+	"time"
+
+	"github.com/DevanshS9881/Job_Portal-GO/config"
 	"github.com/DevanshS9881/Job_Portal-GO/database"
 	"github.com/DevanshS9881/Job_Portal-GO/models"
 	"github.com/gofiber/fiber/v2"
-	"fmt"
+	jtoken "github.com/golang-jwt/jwt/v4"
+	"github.com/DevanshS9881/Job_Portal-GO/hashPassword"
+
 )
 
 func Register(c *fiber.Ctx) error {
@@ -14,6 +20,7 @@ func Register(c *fiber.Ctx) error {
 			"Error": err.Error(),
 		})
 	}
+	newUser.Password,_=hashpassword.HashPassword(newUser.Password)
 	result := database.Db.Create(&newUser)
 	//database.Db.Create(&newUser)
 	if result.Error != nil {
@@ -30,8 +37,23 @@ func Register(c *fiber.Ctx) error {
 		"success": true,
 		"message": "Successfully registered",
 	})
-	return nil
+	//return nil
+	day:=time.Hour*24;
+	claims:=jtoken.MapClaims{
+		"ID": newUser.ID,
+		"email":newUser.Email,
+		"expi":time.Now().Add(day*1).Unix(),
+	}
+	token:=jtoken.NewWithClaims(jtoken.SigningMethodHS256,claims)
+	t,err:=token.SignedString([]byte(config.Secret))
+	if err != nil{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{ "error":err.Error(),})
+	}
+	return c.JSON(models.LoginResponse{
+		Token:t,
+	})
 }
+
 func UpdateProfileEmployee(c *fiber.Ctx) error {
 	var newUser models.Employee
 	userID := database.Convert(c.Params("id"))
@@ -42,6 +64,7 @@ func UpdateProfileEmployee(c *fiber.Ctx) error {
 		})
 	}
 	newUser.UserID = userID
+	//newUser.Password,_=hashpassword.HashPassword(newUser.Password)
 	 var existingUser models.User
 	 
 	 //checking whether the user exists or not
@@ -146,4 +169,47 @@ func ShowProfile(c *fiber.Ctx) error {
 		"message": "Successfully Fetched",
 	})
 	return nil
+}
+
+func DeleteUser(c *fiber.Ctx) error{
+	id:=c.Params("id")
+	user:=new((models.User))
+	result:=database.Db.Preload("Employee").Preload("Employer").First(&user,id)
+	if result.Error!=nil{
+		c.Status(400).SendString("Invalid user id")
+		return result.Error;
+	}
+	if err:=database.Db.Where("id=?",id).Delete(&models.User{}).Error;err!=nil{
+		c.Status(400).JSON(&fiber.Map{
+			"data":nil,
+			"success":false,
+			"message":"No record exists",
+		})
+		return err
+	}
+	if user.Employee.ID!=0{
+		if err:=database.Db.Where("user_id=?",id).Delete(&models.Employee{}).Error;err!=nil{
+			c.Status(400).JSON(&fiber.Map{
+				"data":nil,
+				"success":false,
+				"message":"No employee record exists",
+			})
+			return err
+		}
+	}else{
+		if err:=database.Db.Where("user_id=?",id).Delete(&models.Employer{}).Error;err!=nil{
+			c.Status(400).JSON(&fiber.Map{
+				"data":nil,
+				"success":false,
+				"message":"No employer record exists",
+			})
+			return err
+		}
+	}
+	return c.Status(400).JSON(&fiber.Map{
+		"data":user,
+		"success":true,
+		"message":"Successfully deleted the data",
+	})
+	
 }

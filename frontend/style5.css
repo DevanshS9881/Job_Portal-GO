@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:'Poppins','sans-serif';
+}
+body{
+    background:#020410;
+}
+.background{
+    width:100%;
+    height:100vh;
+    background: url('background.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+}
+.container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:75%;
+    height:650px;
+    background: url('background.jpg') no-repeat;
+    background-size: cover;
+    background-position:center;
+    border-radius: 10px;
+    margin-top:20px;
+    }
+.container .content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 58%;
+    height: 100%;
+    background: transparent;
+    padding: 80px;
+    color:#e4e4e4;
+    outline-color: #020410;
+    font-weight:bolder;
+    font-stretch: extra-expanded;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+     color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke: 0.5px black; 
+
+}
+.content .logo{
+    font-size: 70px;
+}
+.sidetext h2{
+    font-size: 55px;
+    line-height: 1;
+}
+.sidetext h2 span{
+    font-size: 30px;
+}
+.sidetext p{
+    font-size: 20px;
+    margin: 20px 0;
+}
+.container .loginBox{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 58%);
+    height: 100%;
+    /*background:transparent;*/
+    overflow: hidden;
+}
+
+.loginBox .registerForm{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height:100%;
+    background:transparent;
+    backdrop-filter: blur(20px);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #e4e4e4;
+
+}
+.loginBox .registerForm.signup{
+    transform: translateX(0);
+    transition: transform .6s ease;
+    transition-delay: .7s;
+}
+.loginBox.active .registerForm.signup{
+    transform: translateX(430px);
+    transition-delay: 0s;
+}
+.loginBox .registerForm.login{
+    transform: translateX(700px);
+    transition: transform .6s ease;
+    transition-delay: 0s;
+}
+.loginBox.active .registerForm.login{
+    transform: translateX(0);
+    transition-delay: .7s;
+}
+.registerForm h2{
+    font-size:40px;
+    text-align: center;
+    color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke: 0.5px black; 
+
+}
+.registerForm .inputBox{
+    position: relative;
+    width:340px;
+    height: 50px;
+    border-bottom:2px solid #e4e4e4;
+    margin: 30px 0;
+}
+.inputBox input{
+    width:100%;
+    height: 100%;
+    background:transparent;
+    border:none;
+    outline: none;
+    font-size: 16px;
+    color: #e4e4e4;
+    font-weight: bold;
+    padding-right: 28px;
+}
+.inputBox label{
+    position:absolute;
+    top: 50%;
+    left:0;
+    /*bottom: 50%;*/
+    transform: translateY(-50%);
+    font-size: 16px;
+    font-weight: bold;
+    pointer-events: none;
+    transition: .5s ease;
+}
+.inputBox input:focus~label,
+.inputBox input:valid~label{
+    top: -5px;
+}
+.inputBox .icon{
+    position: absolute;
+    right:0;
+    top: 13px;
+    font-size: 19px;
+}
+#signupBt{
+    width:100%;
+    height:45px;
+    background:gray;
+    border:none;
+    outline: none;
+    border-radius: 4px;
+    cursor:pointer;
+    font-size:16px;
+    color: #e4e4e4;
+    font-weight: bold;
+}
+#loginBt{
+        width:100%;
+        height:45px;
+        background:gray;
+        border:none;
+        outline: none;
+        border-radius: 4px;
+        cursor:pointer;
+        font-size:16px;
+        color: #e4e4e4;
+        font-weight: bold;
+    
+}
+.registerForm .login{
+    font-size:14.5px;
+    font-weight:500;
+    text-align:center;
+    margin-top:25px;
+    font-weight:500;
+}
+.login p a{
+    color:#e4e4e4;
+    font-weight:bold;
+    text-decoration:none;
+}
+.login p a:hover{
+    text-decoration: underline;
+}
+.image{
+    display: inline;
+    width:55px;
+}
+.logo-container{
+    display: flex;
+    align-items: center;
+    font-size:40px;
+    text-align: center;
+    color: black;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke: 0.5px black; 
+}
+#googleUp{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width:100%;
+    height:45px;
+    background:gray;
+    border:none;
+    outline: none;
+    border-radius: 4px;
+    cursor:pointer;
+    font-size:16px;
+    color: #e4e4e4;
+    font-weight: bold;
+}
+i{
+    font-size: 24px; 
+}
+#googleIn{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width:100%;
+    height:45px;
+    background:gray;
+    border:none;
+    outline: none;
+    border-radius: 4px;
+    cursor:pointer;
+    font-size:16px;
+    color: #e4e4e4;
+    font-weight: bold;
+}

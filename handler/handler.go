@@ -2,11 +2,14 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
+	//"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
 
 	"github.com/DevanshS9881/Job_Portal-GO/config"
+	"github.com/DevanshS9881/Job_Portal-GO/database"
 	"github.com/DevanshS9881/Job_Portal-GO/models"
 	"github.com/DevanshS9881/Job_Portal-GO/repository"
 	"github.com/gofiber/fiber/v2"
@@ -77,8 +80,47 @@ func Login(c *fiber.Ctx) error{
 		if err != nil {
 			return c.SendString("JSON Parsing Failed")
 		}
+	     var newUser models.User
+		 json.Unmarshal(userData,&newUser)
+		 if err:=database.Db.Where("email = ?", newUser.Email).First(&newUser).Error;err!=nil{
+			result := database.Db.Create(&newUser)
+			if result.Error != nil {
+				c.Status(400).JSON(&fiber.Map{
+					"data":    nil,
+					"success": false,
+					"message": result.Error,
+				})
+				return result.Error
+			}
+			if result.Error != nil {
+				c.Status(400).JSON(&fiber.Map{
+					"data":    nil,
+					"success": false,
+					"message": result.Error,
+				})
+				return result.Error
+			}
+			//return nil,errors.New("user is not found")
+		}
+		
 	
-		return c.SendString(string(userData))
+	day:=time.Hour*24;
+	claims:=jtoken.MapClaims{
+		"ID": newUser.ID,
+		"email":newUser.Email,
+		"expi":time.Now().Add(day*1).Unix(),
+	}
+	token2:=jtoken.NewWithClaims(jtoken.SigningMethodHS256,claims)
+	t,err:=token2.SignedString([]byte(config.Secret))
+	if err != nil{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{ "error":err.Error(),})
+	}
+	return c.JSON(models.LoginResponse{
+		Token:t,
+	})
+
+		 //fmt.Println(newUser)
+		//return c.SendString(string(userData))
 	
 	}
 	

@@ -41,21 +41,22 @@ type Employer struct{
 	Birth_Date string `json:"BirthDate"`
 	Age uint `json:"Age"`
 	Company string `json:"Company"`
-	Jobs []Jobs
+	
 }
 type Jobs struct{
 	gorm.Model
-	EmployerID uint 
-	Profile string
-    Comapny string
-	Experience string
-	//Desc string
-	Location string
-	Salary int64
-	Status string
+	EmployerID uint `json:"Employer_ID"`
+	Profile string   `json:"Profile"`
+    Comapny string     `json:"Comapny"`
+	Experience string   `json:"Experience"`
+	Qualification string  `json:"Qualification"`
+	Location string      `json:"Location"`
+	Salary int64          `json:"Salary"`
+	Status string        `json:"Status"`
 }
 type Vacancy struct{
 	gorm.Model
 	JobsProfile string
 	Vacancies string
 }
+//Jobs []Jobs //`gorm:"foreignKey:EmployerID"`
