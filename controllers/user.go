@@ -213,3 +213,27 @@ func DeleteUser(c *fiber.Ctx) error{
 	})
 	
 }
+
+func Role(c *fiber.Ctx) error{
+	var currUser models.User
+	var currRole models.Roles
+	if err:=c.BodyParser(&currRole);err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"Error": err.Error(),
+		})
+	}
+    user:=c.Locals("user").(*jtoken.Token)
+	claims:=user.Claims.(jtoken.MapClaims)
+	idF6:=claims["ID"].(float64)
+	id:=uint(idF6)
+	if result:=database.Db.First(&currUser,id).Error;result!=nil{
+		return c.Status(400).JSON(&fiber.Map{
+			"message":"User does not exist",
+		})
+	}
+	fmt.Println(currRole.Role)
+	currUser.Role=currRole.Role
+	fmt.Println(currUser.Role)
+	database.Db.Save(&currUser)
+	return nil
+}

@@ -2,6 +2,9 @@ package models
 import(
 	"github.com/jinzhu/gorm"
 )
+type Roles struct{
+	Role string `json:"Role"`
+}
 type LoginRequest struct{
 	Email string `json:"email"`
 	Password string `json:"Password"`
@@ -30,6 +33,7 @@ type Employee struct{
 	Age uint `json:"Age"`
 	Bio string `json:"Bio"`
 	Skill string `json:"Skill"`
+	Application Application `gorm:"foreignKey:EmployeeID"`
 }
 type Employer struct{
 	gorm.Model
@@ -40,7 +44,7 @@ type Employer struct{
 	City string  `json:"City"`
 	Birth_Date string `json:"BirthDate"`
 	Age uint `json:"Age"`
-	Company string `json:"Company"`
+	Company string `json:"Company"` 
 	
 }
 type Jobs struct{
@@ -53,10 +57,17 @@ type Jobs struct{
 	Location string      `json:"Location"`
 	Salary int64          `json:"Salary"`
 	Status string        `json:"Status"`
+	Application []Application `gorm:"foreignKey:JobID"`
 }
 type Vacancy struct{
 	gorm.Model
 	JobsProfile string
 	Vacancies string
+}
+type Application struct{
+	gorm.Model
+	EmployeeID uint `json:"EmployeeID"`
+	JobsID uint `json:"JobID"`
+	Desc string `json:"letter"`
 }
 //Jobs []Jobs //`gorm:"foreignKey:EmployerID"`

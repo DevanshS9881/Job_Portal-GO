@@ -72,3 +72,10 @@ func DeleteJob(c *fiber.Ctx) error{
 	})
 	
 }
+
+func GetJobByProfile(c *fiber.Ctx) error{
+	profile:=c.Params("profile")
+	var job []models.Jobs
+
+}
+
