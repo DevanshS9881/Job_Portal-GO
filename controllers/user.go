@@ -231,9 +231,24 @@ func Role(c *fiber.Ctx) error{
 			"message":"User does not exist",
 		})
 	}
-	fmt.Println(currRole.Role)
+	//fmt.Println(currRole.Role)
 	currUser.Role=currRole.Role
-	fmt.Println(currUser.Role)
+	//fmt.Println(currUser.Role)
 	database.Db.Save(&currUser)
-	return nil
+	day:=time.Hour*24;
+	claims=jtoken.MapClaims{
+		"ID": currUser.ID,
+		"email":currUser.Email,
+		"role":currUser.Role,
+		"expi":time.Now().Add(day*1).Unix(),
+	}
+	token2:=jtoken.NewWithClaims(jtoken.SigningMethodHS256,claims)
+	t,err:=token2.SignedString([]byte(config.Secret))
+	if err != nil{
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{ "error":err.Error(),})
+	}
+	return c.JSON(models.LoginResponse{
+		Token:t,
+	})
+
 }

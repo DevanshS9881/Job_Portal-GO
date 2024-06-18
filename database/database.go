@@ -32,20 +32,7 @@ func InitDB() error{
 		return err
 	}
 	fmt.Println("Successfully connected to the database")
-	Db.AutoMigrate(&models.User{},&models.Jobs{},&models.Employer{},&models.Employee{})
+	Db.AutoMigrate(&models.User{},&models.Jobs{},&models.Employer{},&models.Employee{},&models.Application{})
     return nil
 }	
-// func CreateUser(name,email,password,role string) (models.User,error){
-// 	newUser:=models.User{
-// 		Name:name,
-// 		Email:email,
-// 		Password: password,
-// 		Role: role,
-// 	}
-// 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-//     if err != nil {
-//         return newUser, err
-//     }
-// 	db.Create(&newUser)
-// 	return newUser,nil
-// }
+

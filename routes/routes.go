@@ -19,7 +19,7 @@ func SetRoutes(app *fiber.App){
 	app.Delete("/deleteJob/:id",jwt,controllers.DeleteJob)
 	app.Post("/role",jwt,controllers.Role)
 	app.Post("/apply",jwt,controllers.Apply)
-	app.Get("/review",jwt,controllers.Review)
-	
+	app.Get("/review/:Employer_id/:job_id",jwt,controllers.Review)
+
 	//app.Post("/addJob/:id",con)
  }

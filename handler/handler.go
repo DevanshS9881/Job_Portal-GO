@@ -28,6 +28,7 @@ func Login(c *fiber.Ctx) error{
 	claims:=jtoken.MapClaims{
 		"ID": user.ID,
 		"email":user.Email,
+		"role":user.Role,
 		"expi":time.Now().Add(day*1).Unix(),
 	}
 	token:=jtoken.NewWithClaims(jtoken.SigningMethodHS256,claims)
@@ -101,6 +102,7 @@ func Login(c *fiber.Ctx) error{
 				return result.Error
 			}
 			//return nil,errors.New("user is not found")
+			newUser.Role="employee";
 		}
 		
 	
@@ -108,6 +110,7 @@ func Login(c *fiber.Ctx) error{
 	claims:=jtoken.MapClaims{
 		"ID": newUser.ID,
 		"email":newUser.Email,
+		"role":newUser.Role,
 		"expi":time.Now().Add(day*1).Unix(),
 	}
 	token2:=jtoken.NewWithClaims(jtoken.SigningMethodHS256,claims)

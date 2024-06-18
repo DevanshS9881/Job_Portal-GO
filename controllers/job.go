@@ -75,7 +75,20 @@ func DeleteJob(c *fiber.Ctx) error{
 
 func GetJobByProfile(c *fiber.Ctx) error{
 	profile:=c.Params("profile")
-	var job []models.Jobs
+	var jobs []models.Jobs
+	result := database.Db.Select("profile, company, experience, qualification, location, salary, status").
+		Where("profile = ?", profile).
+		Find(&jobs)
 
+	if result.Error != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": result.Error.Error(),
+		})
+	}
+
+	return c.JSON(jobs)
 }
+
+ 
+
 

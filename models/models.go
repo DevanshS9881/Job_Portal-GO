@@ -1,7 +1,12 @@
 package models
-import(
+
+import (
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/jinzhu/gorm"
 )
+type Claims struct {
+	jwt.StandardClaims
+}
 type Roles struct{
 	Role string `json:"Role"`
 }
@@ -27,20 +32,20 @@ type Employee struct{
     UserID uint `json:"UserID"`
 	Name string `json:"Name"`
 	//User_Name string `json:"Username"`
-	UserRole string `json:"Role"`
+	//UserRole string `json:"Role"`
 	City string  `json:"City"`
 	Birth_Date string `json:"BirthDate"`
 	Age uint `json:"Age"`
 	Bio string `json:"Bio"`
 	Skill string `json:"Skill"`
-	Application Application `gorm:"foreignKey:EmployeeID"`
+	Application []Application `gorm:"foreignKey:EmployeeID"`
 }
 type Employer struct{
 	gorm.Model
 	UserID uint `json:"UserID"`
 	Name string `json:"Name"`
 	//User_Name string `json:"Username"`
-	UserRole string `json:"Role"`
+	//UserRole string `json:"Role"`
 	City string  `json:"City"`
 	Birth_Date string `json:"BirthDate"`
 	Age uint `json:"Age"`
@@ -57,7 +62,7 @@ type Jobs struct{
 	Location string      `json:"Location"`
 	Salary int64          `json:"Salary"`
 	Status string        `json:"Status"`
-	Application []Application `gorm:"foreignKey:JobID"`
+	Application []Application `gorm:"foreignKey:JobsID"`
 }
 type Vacancy struct{
 	gorm.Model

@@ -9,7 +9,7 @@ import (
 )
 func Find(email,password string) (*models.User,error){
     var existingUser models.User
-	existingUser.Password,_=hashpassword.HashPassword(existingUser.Password)
+	//existingUser.Password,_=hashpassword.HashPassword(existingUser.Password)
 	// //if err:=database.Db.Where("email = ? AND password = ?", email, password).First(&existingUser).Error;err!=nil{
 	// 	return nil,errors.New("user is not found")
 	// }
