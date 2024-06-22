@@ -154,21 +154,21 @@ func ShowProfile(c *fiber.Ctx) error {
 	// 	c.Status(400).JSON(fiber.Map{ "Error":"Invalid User ID"})
 	// }
 	var user models.User
-	result := database.Db.Preload("Employee").Preload("Employee").First(&user, userID)
+	result := database.Db.Preload("Employee").Preload("Employer").First(&user, userID)
 	if result.Error != nil {
-		c.Status(400).JSON(&fiber.Map{
+		return c.Status(400).JSON(&fiber.Map{
 			"data":    nil,
 			"success": false,
 			"message": "No record exists",
 		})
-		return result.Error
+		
 	}
-	c.Status(200).JSON(&fiber.Map{
+	return c.Status(200).JSON(&fiber.Map{
 		"data":    user,
 		"success": true,
 		"message": "Successfully Fetched",
 	})
-	return nil
+	
 }
 
 func DeleteUser(c *fiber.Ctx) error{

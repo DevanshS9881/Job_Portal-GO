@@ -3,6 +3,8 @@ package handler
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+
 	//"fmt"
 	"io/ioutil"
 	"net/http"
@@ -25,6 +27,8 @@ func Login(c *fiber.Ctx) error{
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{ "error":err.Error(),})
 	}
 	day:=time.Hour*24;
+	fmt.Println(user.ID)
+	fmt.Println(user.Role)
 	claims:=jtoken.MapClaims{
 		"ID": user.ID,
 		"email":user.Email,

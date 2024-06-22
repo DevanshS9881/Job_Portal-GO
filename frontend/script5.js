@@ -79,7 +79,7 @@ document.getElementById('loginBt').addEventListener('click', async function(even
     if (response.ok) {
         sessionStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
-        window.location.href = 'http://127.0.0.1:3000/frontend/protected.html'; 
+        window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html'; 
     } else {
         alert('Signup failed: ' + data.message);
     }

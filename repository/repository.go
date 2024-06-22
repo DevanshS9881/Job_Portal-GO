@@ -22,11 +22,7 @@ func Find(email,password string) (*models.User,error){
 		return nil,errors.New("user is not found")
 	}
 	if hashpassword.VerifyPassword(password,existingUser.Password){
-		return &models.User{
-				//ID :1,
-				Email: email,
-				//Password: password,
-			},nil
+		return &existingUser,nil
 	}
 	return nil,errors.New("user not found")
 }
