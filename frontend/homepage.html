@@ -4,13 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="homestyle.css"
 </head>
 <body>
-    <h1> WELCOME TO JOBKART</h1>
-   <p> <a href="http://127.0.0.1:3000/frontend/profileEE.html"> Profile</a></p>
-    <!-- <a href="http://127.0.0.1:3000/frontend/profileEE.html"> Logout </a> -->
-    <script>
+    <header>
+        <section class="top">
+            <a href="home.html" class="logo">Jobkart</a>
+            <nav class="navbar">
+                <a href="home.html" class="link">Home</a>
+                <a href="find.html" class="link">Find Jobs</a>
+                <a href="about.html" class="link">About Us</a>
+                <div class="dropdown">
+                    <a href="dashboard.html" class="link dropbtn">Dashboard</a>
+                    <div class="dropdown-content">
+                        <a href="profileEE.html">Profile</a>
+                        <a href="showJobs.html">Jobs Posted</a>
+                        <a href="logout.html">Logout</a>
+                    </div>
+                </div>
+                <span id="postButton-holder"></span>
+            </nav>
+        </section>
+    </header>
 
-    </script>
+    <div class="home">
+        <div class ="content">
+            <div class="text">
+           <p class="main"> <h1>We Help you find your dream job</h1></p>
+            <p><h6>Discover more than 8000+ Jobs on Jobkart</h3></p>
+           <div class="bt"><button type="submit " class="findBt">Get Started</button></div>
+        </div>
+        <div class="sideImage">
+            <img class="image" src="bg.png">
+        </div>
+        </div>
+
+    </div>
+    <div class="category">
+        <section class="category-section">
+           <div class="heading"> <h2>Explore By Top Profiles</h2></div>
+
+            <div class="grid-container">
+                <a href="#" class="profile-box ">
+                <div class="grid-box">
+                    <h3>Web Developer </h3>
+                    <span>jobs</span>
+                </div>
+            </a>
+            <a href="#" class="profile-box ">
+                <div class="grid-box">
+                    <h3> DevOps Manager </h3>
+                    <span>jobs</span>
+                </div>
+            </a>
+           
+            <a href="#" class="profile-box ">
+                <div class="grid-box">
+                    <h3>App Developer</h3>
+                    <span>jobs</span>
+                </div>
+            </a>
+            <a href="#" class="profile-box ">
+                <div class="grid-box">
+                    <h3>Finance & Sales</h3>
+                    <span>jobs</span>
+                </div>
+            </a>
+            <a href="#" class="profile-box ">
+                <div class="grid-box">
+                    <h3>Human Resource</h3>
+                    <span>jobs</span>
+                </div>
+            </a>
+            <a href="#" class="profile-box ">
+                <div class="grid-box">
+                    <h3>Consultancy</h3>
+                    <span>jobs</span>
+                </div>
+            </a>
+        </div>
+        </section>
+    </div>
+    <script src="home.js"></script>
 </body>
 </html>

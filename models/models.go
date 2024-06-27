@@ -50,6 +50,7 @@ type Employer struct{
 	Birth_Date string `json:"BirthDate"`
 	Age uint `json:"Age"`
 	Company string `json:"Company"` 
+	Jobs []Jobs `gorm:"foreignKey:EmployerID"`
 	
 }
 type Jobs struct{

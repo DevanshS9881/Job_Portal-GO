@@ -1,13 +1,13 @@
 function checkLoginStatus() {
     if (sessionStorage.getItem('token') != null) {
-        window.location.href = 'http://127.0.0.1:3000/frontend/protected.html';
+        window.location.href = 'http://127.0.0.1:3002/frontend/protected.html';
     }
 }
 window.onload = function() {
     // Check if the user is already logged in
      if (sessionStorage.getItem('token') != null) {
         alert("Session is already logged in");
-        window.location.href = 'http://127.0.0.1:3000/frontend/protected.html';
+        window.location.href = 'http://127.0.0.1:3002/frontend/protected.html';
     }
     
     // Disable caching of the login page to ensure the back button doesn't show the cached page
@@ -53,7 +53,7 @@ document.getElementById('signupBt').addEventListener('click', async function(eve
     if (response.ok) {
         sessionStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
-        window.location.href = 'http://127.0.0.1:3000/frontend/protected.html'; 
+        window.location.href = 'http://127.0.0.1:3002/frontend/protected.html'; 
     } else {
         alert('Signup failed: ' + data.message);
     }
@@ -79,7 +79,7 @@ document.getElementById('loginBt').addEventListener('click', async function(even
     if (response.ok) {
         sessionStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
-        window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html'; 
+        window.location.href = 'http://127.0.0.1:3002/frontend/homepage.html'; 
     } else {
         alert('Signup failed: ' + data.message);
     }
