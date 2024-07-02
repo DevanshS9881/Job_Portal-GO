@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Replace the URL with your actual endpoint
-    // const token=sessionStorage.getItem('token');
-    // console.log(token);
-    // //if(token){
-    //     const decoded=jwt_decode(token);
-    //     console.log(decoded);
-        // if(decoded.Role=="Employer"){
+    const token=sessionStorage.getItem('token');
+    console.log(token);
+    if(token){
+        const decoded=jwt_decode(token);
+        console.log(decoded);
+        if(decoded.role=="Employer"){
             const postButtonHolder=document.getElementById('postButton-holder');
             const postButton=document.createElement('button');
+            postButton.id="postBt"
             postButton.type="submit";
             postButton.textContent="Post Job";
             postButtonHolder.appendChild(postButton);
@@ -20,10 +20,20 @@ document.addEventListener('DOMContentLoaded', function() {
             postButton.style.color="whitesmoke";
             postButton.style.borderRadius="0.5vw"
             postButton.style.margin="2vw"
+            document.getElementById('posted').textContent="Jobs Posted";
 
+            document.getElementById('postBt').addEventListener('click',function(event) {
+                event.preventDefault();
+                window.location.href='http://127.0.0.1:3002/frontend/postJob.html';
+            })
 
-        })
-
+    }
+}
+else{
+    alert("Please login");
+    window.location.href='http://127.0.0.1:3002/frontend/index5.html';
+}
+});
 
             
         

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form-row{
+            margin:5vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="create-job" id="createJob">
+            <h2>Add Job</h2>
+            <div class="form-row">
+                <label for="profile">Profile</label>
+                <input type="text" id="Profile">
+            </div>
+            <div class="form-row">
+                <label for="company">Company</label>
+                <input type="text" id="Company">
+            </div>
+            <div class="form-row">
+                <label for="experience">Experience</label>
+                <input type="text" id="Experience">
+            </div>
+            <div class="form-row">
+                <label for="qualify">Qualification</label>
+                <input type="text" id="Qualify">
+            </div>
+            <div class="form-row">
+                <label for="location">Location</label>
+                <input type="text" id="Location">
+            </div>
+            <div class="form-row bio">
+                <label for="salary">Salary</label>
+                <input type="text" id="Salary"></input>
+            </div>
+            <div class="form-row bio">
+                <label for="desc">Description</label>
+                <textarea id="Desc"></textarea>
+            </div>
+
+            <div class="form-row bio">
+                <label for="status">Status</label>
+                <br>
+                <input type="radio" id="AvaliableStatus" name="Status" value="Avaliable"></input>
+                <label for="enterStatus">Availiable</label>
+                <input type="radio" id="UnavaliableStatus" name="Status" value="Avaliable"></input>
+                <label for="enterStatus">Unavailiable</label>
+            </div>
+            <button type="submit" id="submitUpdate">Submit</button>
+        </div>
+    </div>
+    <script src="postJ.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+</body>
+</html>

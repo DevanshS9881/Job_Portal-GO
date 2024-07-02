@@ -10,17 +10,17 @@
         }
         .container {
             width: 80%;
-            margin: 20vh;
-            display:flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .content {
+            margin: 20vh auto;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        .profile-row {
+        .content, .update-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .profile-row, .form-row {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
@@ -28,39 +28,92 @@
         .field {
             font-weight: bold;
         }
+        .profile-row .bio, .form-row .bio {
+            display: none;
+        }
+        .update {
+            margin: 5vh;
+        }
+        .update-form {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-      
         <div class="content">
-            <div id="heading"> <h1> Employee Profile </h1></div> 
+            <div id="heading">
+                <h1> Employee Profile </h1>
+            </div>
             <div class="profile-row">
-                <div class="field">Name:</div>
+                <div class="field" id="f1">Name:</div>
                 <div class="data" id="name">Loading...</div>
             </div>
             <div class="profile-row">
-                <div class="field">User ID:</div>
+                <div class="field" id="f2">User ID:</div>
                 <div class="data" id="userId">Loading...</div>
             </div>
             <div class="profile-row">
-                <div class="field">DOB:</div>
+                <div class="field" id="f3">DOB:</div>
                 <div class="data" id="dob">Loading...</div>
             </div>
             <div class="profile-row">
-                <div class="field">Email:</div>
+                <div class="field" id="f4">Email:</div>
                 <div class="data" id="email">Loading...</div>
             </div>
             <div class="profile-row">
-                <div class="field">Location:</div>
+                <div class="field" id="f5">Location:</div>
                 <div class="data" id="location">Loading...</div>
             </div>
             <div class="profile-row">
-                <div class="field">Skill:</div>
-                <div class="data" id="skill">Loading...</div>
+                <div class="field" id="f6">Field</div>
+                <div class="data" id="f6Value">Loading...</div>
+            </div>
+            <div class="profile-row">
+                <div class="field" id="f7">Field</div>
+                <div class="data" id="f7Value">Loading...</div>
+            </div>
+            <div class="profile-row bio">
+                <div class="field" id="f8">Bio</div>
+                <div class="data" id="Bio">Loading...</div>
+            </div>
+            <div class="update">
+                <button type="submit" id="updateBt">Update Profile</button>
             </div>
         </div>
+
+      
+
+        <div class="update-form" id="updateForm">
+            <h2>Update Profile</h2>
+            <div class="form-row">
+                <label for="updateName">Name:</label>
+                <input type="text" id="updateName">
+            </div>
+            <div class="form-row">
+                <label for="updateDOB">DOB:</label>
+                <input type="date" id="updateDOB">
+            </div>
+            <div class="form-row">
+                <label for="updateEmail">Email:</label>
+                <input type="email" id="updateEmail">
+            </div>
+            <div class="form-row">
+                <label for="updateLocation">Location:</label>
+                <input type="text" id="updateLocation">
+            </div>
+            <div class="form-row">
+                <label id="f6Label" for="updateF6">Field:</label>
+                <input type="text" id="updateF6">
+            </div>
+            <div class="form-row bio">
+                <label for="updateBio">Bio:</label>
+                <textarea id="updateBio"></textarea>
+            </div>
+            <button type="submit" id="submitUpdate">Submit</button>
+        </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script src="p2.js"></script>
 </body>

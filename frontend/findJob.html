@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="findJob.css">
+</head>
+<body>
+    <header>
+        <section class="top">
+            <a href="home.html" class="logo">Jobkart</a>
+            <nav class="navbar">
+                <a href="home.html" class="link">Home</a>
+                <a href="findJob.html" class="link">Find Jobs</a>
+                <a href="about.html" class="link">About Us</a>
+                <div class="dropdown">
+                    <a href="dashboard.html" class="link dropbtn">Dashboard</a>
+                    <div class="dropdown-content">
+                        <a href="profileEE.html">Profile</a>
+                        <a href="showJobs.html">Jobs Posted</a>
+                        <a href="logout.html">Logout</a>
+                    </div>
+                </div>
+                <span id="postButton-holder"></span>
+            </nav>
+        </section>
+    </header>
+    <div class="container">
+        <div class="filter">
+            <div class="heading">Filter Jobs</div>
+            <div class="search">
+                <div class="profileS">
+                    <label for="search">Enter Profile</label>
+                    <input type="text" id="searchP" placeholder="eg. App Developer">
+                </div>
+                <div class="locationS">
+                    <label for="search">Enter Location</label>
+                    <input type="text" id="searchL" placeholder="eg. Gurugram">
+                </div>
+            </div>
+            <button type="submit" id="filterBt">Search</button>
+        </div>
+        <div class="jobList" id="jobList"></div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalJobDetails"></div>
+            <button id="applyBt">Apply</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="findJob.js"></script>
+    
+</body>
+</html>

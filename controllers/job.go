@@ -15,14 +15,15 @@ func CreateJob(c *fiber.Ctx) error{
 		})
 	}
 	var existingEmployer models.Employer
-	if err:=database.Db.First(&existingEmployer,"id=?",employerID).Error;err!=nil{
+	if err:=database.Db.First(&existingEmployer,"user_id=?",employerID).Error;err!=nil{
 		return c.Status(400).JSON(fiber.Map{
 			"Error":err.Error,
 		    "Message":"Invalid Employer ID"     ,            
 		})
 	}
+	newJob.EmployerID=existingEmployer.ID
 	result := database.Db.Create(&newJob)
-	newJob.EmployerID=employerID
+	
 if result.Error!=nil{
 	c.Status(400).JSON(&fiber.Map{
 		"data":    nil,
@@ -39,41 +40,81 @@ if result.Error!=nil{
 	return nil
 }
 
-func GetJob(c *fiber.Ctx) error{
-			id:=database.Convert(c.Params("id"))
-			job:=new(models.Jobs)
-			result:=database.Db.First(&job,id)
-			if result.Error!=nil{
-				c.Status(400).JSON(&fiber.Map{
-					"data":nil,
-					"success":false,
-					"message":"No record exists",
-				})
-				return result.Error
-			}
-			return c.Status(400).JSON(&fiber.Map{
-				"data":job,
-				"success":true,
-				"message":"Successfully fetched the data",
-			})
+func GetJob(c *fiber.Ctx) error {
+    id := database.Convert(c.Params("id"))
+    var jobs []models.Jobs
+    var existingEmployer models.Employer
+
+
+    result1 := database.Db.First(&existingEmployer, "user_id = ?", id)
+    if result1.Error != nil {
+        c.Status(400).JSON(&fiber.Map{
+            "data":    nil,
+            "success": false,
+            "message": "Employer not found",
+        })
+        return result1.Error
+    }
+
+    
+    result2 := database.Db.Where("employer_id = ?", existingEmployer.ID).Find(&jobs)
+    if result2.Error != nil {
+        c.Status(400).JSON(&fiber.Map{
+            "data":    nil,
+            "success": false,
+            "message": "No jobs found for this employer",
+        })
+        return result2.Error
+    }
+
+    return c.Status(200).JSON(&fiber.Map{
+        "data":    jobs,
+        "success": true,
+        "message": "Successfully fetched the data",
+    })
+}
+
+func AllJobs(c *fiber.Ctx) error {
+    // Create a slice to hold the jobs
+    var jobs []models.Jobs
+    
+    // Retrieve all jobs from the database
+    result := database.Db.Find(&jobs)
+    
+    // Check for errors
+    if result.Error != nil {
+        return c.Status(500).JSON(&fiber.Map{
+            "data":    nil,
+            "success": false,
+            "message": "Failed to retrieve jobs",
+        })
+    }
+    
+    // Return the retrieved jobs
+    return c.Status(200).JSON(&fiber.Map{
+        "data":    jobs,
+        "success": true,
+        "message": "Successfully fetched all jobs",
+    })
 }
 
 func DeleteJob(c *fiber.Ctx) error{
 	id:=database.Convert(c.Params("id"))
-	employerID := database.Convert(c.Params("Employer_id"))
+	//employerID := database.Convert(c.Params("Employer_id"))
 	job:=new((models.Jobs))
+	//var existingEmployer models.Employer
 	result:=database.Db.First(&job,id)
 	if result.Error!=nil{
 		c.Status(400).SendString("Invalid job id")
 		return result.Error;
 	}
-	var existingEmployer models.Employer
-	if err:=database.Db.First(&existingEmployer,"id=?",employerID).Error;err!=nil{
-		return c.Status(400).JSON(fiber.Map{
-			"Error":err.Error,
-		    "Message":"Invalid Employer ID"     ,            
-		})
-	}
+	// var existingEmployer models.Employer
+	// if err:=database.Db.First(&existingEmployer,"user_id=?",employerID).Error;err!=nil{
+	// 	return c.Status(400).JSON(fiber.Map{
+	// 		"Error":err.Error,
+	// 	    "Message":"Invalid Employer ID"     ,            
+	// 	})
+	// }
 	if err:=database.Db.Where("id=?",id).Delete(&models.Jobs{}).Error;err!=nil{
 		c.Status(400).JSON(&fiber.Map{
 			"data":nil,
@@ -82,11 +123,11 @@ func DeleteJob(c *fiber.Ctx) error{
 		})
 		return err
 	}
-	return c.Status(400).JSON(&fiber.Map{
-		"data":job,
+	return c.Status(200).JSON(&fiber.Map{
+		"data":nil,
 		"success":true,
 		"message":"Successfully deleted the data",
-	})
+	})	
 	
 }
 
@@ -123,7 +164,7 @@ func UpdateJob(c *fiber.Ctx) error{
 		})
 	}
 	var existingEmployer models.Employer
-	if err:=database.Db.First(&existingEmployer,"id=?",employerID).Error;err!=nil{
+	if err:=database.Db.First(&existingEmployer,"user_id=?",employerID).Error;err!=nil{
 		return c.Status(400).JSON(fiber.Map{
 			"Error":err.Error,
 		    "Message":"Invalid Employer ID"     ,            

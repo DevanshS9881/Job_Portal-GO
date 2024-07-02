@@ -9,9 +9,21 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(id);
 
         const endpointUrl = `http://127.0.0.1:8081/getProfile/${id}`;
-        const role = decoded.Role;
+        const role = decoded.role;
+        console.log(role);
 
         fetchProfile(endpointUrl, token, role);
+
+        // Event listener for Update Profile button
+        document.getElementById('updateBt').addEventListener('click', function() {
+            showUpdateForm(role);
+        });
+
+        // Event listener for form submission
+        document.getElementById('submitUpdate').addEventListener('click', function(event) {
+            event.preventDefault();
+            submitUpdateForm(id, token, role);
+        });
     } else {
         alert("Please login");
         window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
@@ -40,6 +52,21 @@ function fetchProfile(endpointUrl, token, role) {
             document.getElementById('dob').textContent = Data.data.Employee.BirthDate;
             document.getElementById('email').textContent = Data.data.Email;
             document.getElementById('location').textContent = Data.data.Employee.City;
+            document.getElementById('f6').textContent = "Skill";
+            document.getElementById('f7').textContent = "Employee ID";
+            document.getElementById('f6Value').textContent = Data.data.Employee.Skill;
+            document.getElementById('f7Value').textContent = Data.data.Employee.ID;
+            document.getElementById('Bio').textContent = Data.data.Employee.Bio;
+            document.querySelector('.bio').style.display = "flex";
+
+            // Populate update form
+            document.getElementById('updateName').value = Data.data.Name;
+            document.getElementById('updateDOB').value = Data.data.Employee.BirthDate;
+            document.getElementById('updateEmail').value = Data.data.Email;
+            document.getElementById('updateLocation').value = Data.data.Employee.City;
+            document.getElementById('updateF6').value = Data.data.Employee.Skill;
+            document.getElementById('updateBio').value = Data.data.Employee.Bio;
+
         } else {
             document.getElementById('heading').textContent = "EMPLOYER PROFILE";
             document.getElementById('name').textContent = Data.data.Name;
@@ -47,9 +74,88 @@ function fetchProfile(endpointUrl, token, role) {
             document.getElementById('dob').textContent = Data.data.Employer.BirthDate;
             document.getElementById('email').textContent = Data.data.Email;
             document.getElementById('location').textContent = Data.data.Employer.City;
+            document.getElementById('f6').textContent = "Company";
+            document.getElementById('f7').textContent = "Employer ID";
+            document.getElementById('f6Value').textContent = Data.data.Employer.Company;
+            document.getElementById('f7Value').textContent = Data.data.Employer.ID;
+
+            // Populate update form
+            document.getElementById('updateName').value = Data.data.Name;
+            document.getElementById('updateDOB').value = Data.data.Employer.BirthDate;
+            document.getElementById('updateEmail').value = Data.data.Email;
+            document.getElementById('updateLocation').value = Data.data.Employer.City;
+            document.getElementById('updateF6').value = Data.data.Employer.Company;
         }
     })
     .catch(error => {
         console.error('Error fetching data:', error);
     });
+}
+
+function showUpdateForm(role) {
+
+    document.querySelector('.update-form').style.display = 'block';
+    document.querySelector('.content').style.display = 'none';
+
+    if (role === "Employee") {
+        document.querySelector('.bio').style.display = 'flex';
+        document.getElementById('f6Label').textContent = "Skill";
+    } else {
+        document.querySelector('.bio').style.display = 'none';
+        document.getElementById('f6Label').textContent = "Company";
+    }
+}
+
+function submitUpdateForm(id, token, role) {
+    const updatedData = {
+        Name: document.getElementById('updateName').value,
+        BirthDate: document.getElementById('updateDOB').value,
+        Email: document.getElementById('updateEmail').value,
+        City: document.getElementById('updateLocation').value,
+    };
+
+    if (role === "Employee") {
+        updatedData.Skill = document.getElementById('updateF6').value;
+        updatedData.Bio = document.getElementById('updateBio').value;
+    } else {
+        updatedData.Company = document.getElementById('updateF6').value;
+    }
+    if (role === "Employee") {
+    fetch(`http://127.0.0.1:8081/updateProfileEmployee/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(updatedData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Profile updated:', data);
+        alert('Profile updated successfully!');
+        window.location.reload();
+    })
+    .catch(error => {
+        console.error('Error updating profile:', error);
+    });
+}
+else{
+    fetch(`http://127.0.0.1:8081/updateProfileEmployer/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(updatedData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Profile updated:', data);
+        alert('Profile updated successfully!');
+        window.location.reload();
+    })
+    .catch(error => {
+        console.error('Error updating profile:', error);
+    });
+}
 }

@@ -12,13 +12,13 @@
             <a href="home.html" class="logo">Jobkart</a>
             <nav class="navbar">
                 <a href="home.html" class="link">Home</a>
-                <a href="find.html" class="link">Find Jobs</a>
+                <a href="findJob.html" class="link">Find Jobs</a>
                 <a href="about.html" class="link">About Us</a>
                 <div class="dropdown">
                     <a href="dashboard.html" class="link dropbtn">Dashboard</a>
                     <div class="dropdown-content">
                         <a href="profileEE.html">Profile</a>
-                        <a href="showJobs.html">Jobs Posted</a>
+                        <a id="posted" href="posted.html">Applications</a>
                         <a href="logout.html">Logout</a>
                     </div>
                 </div>
@@ -85,6 +85,7 @@
         </div>
         </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script src="home.js"></script>
 </body>
 </html>
