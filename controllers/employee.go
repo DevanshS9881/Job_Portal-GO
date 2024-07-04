@@ -8,7 +8,8 @@ import (
 
 func Apply(c *fiber.Ctx) error{
 	newAppl:=new(models.Application)
-	employeeID := database.Convert(c.Params("id"))
+	employeeID := database.Convert(c.Params("Emid"))
+	jobID:=database.Convert(c.Params("jobID"))
 	if err := c.BodyParser(newAppl); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"Error": err.Error(),
@@ -18,10 +19,18 @@ func Apply(c *fiber.Ctx) error{
 	if err:=database.Db.First(&existingEmployee,"user_id=?",employeeID).Error;err!=nil{
 		return c.Status(400).JSON(fiber.Map{
 			"Error":err.Error,
-		    "Message":"Invalid Employer ID"     ,            
+		    "Message":"Invalid Employee"     ,            
+		})
+	}
+	var existingJob models.Jobs
+	if err:=database.Db.First(&existingJob,"id=?",jobID).Error;err!=nil{
+		return c.Status(400).JSON(fiber.Map{
+			"Error":err.Error,
+		    "Message":"Invalid Job"     ,            
 		})
 	}
 	newAppl.EmployeeID=existingEmployee.ID
+	newAppl.JobsID=jobID
 	result := database.Db.Create(&newAppl)
 	
 	if result.Error != nil {
@@ -32,7 +41,8 @@ func Apply(c *fiber.Ctx) error{
 		})
 		return result.Error
 	}
-
+	existingJob.ApplicationsRecieved++;
+    database.Db.Save(&existingJob)
 	c.Status(200).JSON(&fiber.Map{
 		"data":    newAppl,
 		"success": true,

@@ -53,19 +53,20 @@ type Employer struct{
 	Jobs []Jobs 
 	
 }
-type Jobs struct{
-	gorm.Model
-	EmployerID uint `json:"Employer_ID"`
-	Profile string   `json:"Profile"`
-    Comapny string     `json:"Comapny"`
-	Experience string   `json:"Experience"`
-	Qualification string  `json:"Qualification"`
-	Location string      `json:"Location"`
-	Salary string        `json:"Salary"`
-	Status string        `json:"Status"`
-	Desc string `json:"Desc"`
-	Application []Application `gorm:"foreignKey:JobsID"`
-}
+	type Jobs struct{
+		gorm.Model
+		EmployerID uint `json:"Employer_ID"`
+		Profile string   `json:"Profile"`
+		Comapny string     `json:"Comapny"`
+		Experience string   `json:"Experience"`
+		Qualification string  `json:"Qualification"`
+		Location string      `json:"Location"`
+		Salary string        `json:"Salary"`
+		Status string        `json:"Status"`
+		Desc string `json:"Desc"`
+		ApplicationsRecieved uint `json:"ApplicationsRecieved"`
+		Application []Application `gorm:"foreignKey:JobsID"`
+	}
 type Vacancy struct{
 	gorm.Model
 	JobsProfile string
@@ -74,7 +75,8 @@ type Vacancy struct{
 type Application struct{
 	gorm.Model
 	EmployeeID uint `json:"EmployeeID"`
-	JobsID uint `json:"JobID"`
-	Desc string `json:"letter"`
+	JobsID uint `json:"JobsID"`
+	Letter string `json:"Letter"`
+	Review string 	`json:"Review"`
 }
 //Jobs []Jobs //`gorm:"foreignKey:EmployerID"`

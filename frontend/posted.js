@@ -31,9 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
             jobCreated.textContent = `Created on: ${new Date(job.CreatedAt).toLocaleDateString()}`;
             jobDiv.appendChild(jobCreated);
 
+            const reviewLink=document.createElement('a');
+            reviewLink.textContent=`${job.ApplicationsRecieved} X Applications`
+            reviewLink.href=`review.html?ji=${job.ID}`
+            jobDiv.appendChild(reviewLink)
+
+
             const removeBtn = document.createElement('button');
             removeBtn.className = 'remove-btn';
             removeBtn.textContent = 'Remove Job';
+            removeBtn.style.margin='1vw'
+            removeBtn.style.fontSize='100%'
+            removeBtn.style.padding="0.7vw"
+            removeBtn.style.borderRadius='0.5vw'
             removeBtn.addEventListener('click', () => {
                 if (confirm('Are you sure you want to remove this job?')) {
                     removeJob(job.ID, jobDiv);

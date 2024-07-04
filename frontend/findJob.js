@@ -76,6 +76,15 @@ function displayJobs(jobs, prof, location) {
             salary.textContent = `Salary: ${job.Salary}`;
             jobBlock.appendChild(salary);
 
+            const applyBtn = document.createElement('button');
+            applyBtn.className = 'apply-btn';
+            applyBtn.textContent = 'Apply for Job';
+            applyBtn.addEventListener('click', () => {
+                window.location.href = `apply.html?jobID=${job.ID}`;
+            });
+            jobBlock.appendChild(applyBtn);
+
+
             // const desc = document.createElement('p');
             // desc.textContent = `Description: ${job.Desc}`;
             // jobBlock.appendChild(desc);

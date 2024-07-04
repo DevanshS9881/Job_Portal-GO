@@ -5,7 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .content{
+        display:flex;
+        flex-direction: column;
+    }
+    .form{
+        display: flex;
+        flex-direction: column;
+    }
+    #letter{
+        height:80vh;
+        width:150vh;
+        font-size: 150%;
+        margin:2vh;
+        box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+    }
+    #applyBt{
+        height:5vh;
+        width:10vh;
+        cursor: pointer;
+    }
+    .button{
+        align-items: center;
+        justify-content: center;
+    }
+</style>
 <body>
-    <div container
+    <div class="container">
+        <div class="content">
+            <div class="heading">
+                <h1> Apply For Job</h1>
+            </div>
+            <div class="form">
+                <label for="apply">Application Letter</label>
+                <textarea id="letter"></textarea>
+            </div>
+            <div class="button">
+                <button type="submit" id="applyBt">Apply</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="apply.js"></script>
 </body>
 </html>
