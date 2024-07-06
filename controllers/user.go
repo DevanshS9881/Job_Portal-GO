@@ -171,48 +171,98 @@ func ShowProfile(c *fiber.Ctx) error {
 	
 }
 
-func DeleteUser(c *fiber.Ctx) error{
-	id:=c.Params("id")
-	user:=new((models.User))
-	result:=database.Db.Preload("Employee").Preload("Employer").First(&user,id)
-	if result.Error!=nil{
-		c.Status(400).SendString("Invalid user id")
-		return result.Error;
-	}
-	if err:=database.Db.Where("id=?",id).Delete(&models.User{}).Error;err!=nil{
-		c.Status(400).JSON(&fiber.Map{
-			"data":nil,
-			"success":false,
-			"message":"No record exists",
-		})
-		return err
-	}
-	if user.Employee.ID!=0{
-		if err:=database.Db.Where("user_id=?",id).Delete(&models.Employee{}).Error;err!=nil{
-			c.Status(400).JSON(&fiber.Map{
-				"data":nil,
-				"success":false,
-				"message":"No employee record exists",
-			})
-			return err
-		}
-	}else{
-		if err:=database.Db.Where("user_id=?",id).Delete(&models.Employer{}).Error;err!=nil{
-			c.Status(400).JSON(&fiber.Map{
-				"data":nil,
-				"success":false,
-				"message":"No employer record exists",
-			})
-			return err
-		}
-	}
-	return c.Status(400).JSON(&fiber.Map{
-		"data":user,
-		"success":true,
-		"message":"Successfully deleted the data",
-	})
-	
+func DeleteUser(c *fiber.Ctx) error {
+    // Parse the user ID from the URL parameters
+    userID := database.Convert(c.Params("id"))
+
+    // Convert userID to uint
+    var user models.User
+    if err := database.Db.First(&user, userID).Error; err != nil {
+        return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+            "error": "User not found",
+        })
+    }
+
+    // Start a transaction
+    tx := database.Db.Begin()
+    if tx.Error != nil {
+        return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+            "error": "Failed to start transaction",
+        })
+    }
+
+    var existingEmployer models.Employer
+    if err := database.Db.First(&existingEmployer, "user_id = ?", userID).Error; err == nil {
+        // Delete related applications for each job
+        var jobs []models.Jobs
+        if err := tx.Where("employer_id = ?", existingEmployer.ID).Find(&jobs).Error; err == nil {
+            for _, job := range jobs {
+                if err := tx.Where("jobs_id = ?", job.ID).Delete(&models.Application{}).Error; err != nil {
+                    tx.Rollback()
+                    return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+                        "error": "Failed to delete applications",
+                    })
+                }
+            }
+        }
+
+        // Delete related jobs records
+        if err := tx.Where("employer_id = ?", existingEmployer.ID).Delete(&models.Jobs{}).Error; err != nil {
+            tx.Rollback()
+            return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+                "error": "Failed to delete jobs records",
+            })
+        }
+    }
+
+    // Delete related employer records
+    if err := tx.Where("user_id = ?", userID).Delete(&models.Employer{}).Error; err != nil {
+        tx.Rollback()
+        return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+            "error": "Failed to delete employer records",
+        })
+    }
+
+    var existingEmployee models.Employee
+    if err := database.Db.First(&existingEmployee, "user_id = ?", userID).Error; err == nil {
+        // Delete user applications
+        if err := tx.Where("employee_id = ?", existingEmployee.ID).Delete(&models.Application{}).Error; err != nil {
+            tx.Rollback()
+            return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+                "error": "Failed to delete applications",
+            })
+        }
+    }
+
+    // Delete related employee records
+    if err := tx.Where("user_id = ?", userID).Delete(&models.Employee{}).Error; err != nil {
+        tx.Rollback()
+        return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+            "error": "Failed to delete employee records",
+        })
+    }
+
+    // Finally, delete the user
+    if err := tx.Delete(&models.User{}, userID).Error; err != nil {
+        tx.Rollback()
+        return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+            "error": "Failed to delete user",
+        })
+    }
+
+    // Commit the transaction
+    if err := tx.Commit().Error; err != nil {
+        return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+            "error": "Failed to commit transaction",
+        })
+    }
+
+    return c.Status(fiber.StatusOK).JSON(fiber.Map{
+        "message": "User and related records deleted successfully",
+    })
 }
+
+
 
 func Role(c *fiber.Ctx) error{
 	var currUser models.User

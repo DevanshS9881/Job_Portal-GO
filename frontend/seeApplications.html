@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Applications</title>
+    <link rel="stylesheet" href="seeApplications.css">
+</head>
+<body>
+    <h1>Your Applications</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Job Name</th>
+                <th>Company</th>
+                <th>Applied On</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="applications-list">
+            <!-- Applications will be populated here -->
+        </tbody>
+    </table>
+
+    <!-- Modal for viewing application details -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-body">
+                <div class="job-details">
+                    <h3>Job Details</h3>
+                    <p id="job-profile"></p>
+                    <p id="job-company"></p>
+                    <p id="job-location"></p>
+                    <p id="job-description"></p>
+                </div>
+                <div class="application-letter">
+                    <h3>Application Letter</h3>
+                    <p id="application-letter"></p>
+                </div>
+            </div>
+            <button id="delete-button">Delete Application</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="seeApplications.js"></script>
+</body>
+</html>

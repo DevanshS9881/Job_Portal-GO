@@ -66,6 +66,7 @@ type Employer struct{
 		Desc string `json:"Desc"`
 		ApplicationsRecieved uint `json:"ApplicationsRecieved"`
 		Application []Application `gorm:"foreignKey:JobsID"`
+		
 	}
 type Vacancy struct{
 	gorm.Model
@@ -78,5 +79,8 @@ type Application struct{
 	JobsID uint `json:"JobsID"`
 	Letter string `json:"Letter"`
 	Review string 	`json:"Review"`
+	Employee   Employee `gorm:"foreignKey:EmployeeID"`
+	Jobs        Jobs     `gorm:"foreignKey:JobsID"`
+
 }
 //Jobs []Jobs //`gorm:"foreignKey:EmployerID"`

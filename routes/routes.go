@@ -23,6 +23,8 @@ func SetRoutes(app *fiber.App){
 	app.Put("/updateJob/:id/:Employer_id",jwt,controllers.UpdateJob)
 	app.Get("/allJobs",controllers.AllJobs)
 	app.Get("/getJob/:id",controllers.GetJob)
+	app.Post("/accept/:id/",controllers.Accept)
+	app.Get("/getApplications/:id",controllers.GetApplicationsByEmployee)
 
 
 	//app.Post("/addJob/:id",con)

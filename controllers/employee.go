@@ -51,4 +51,26 @@ func Apply(c *fiber.Ctx) error{
 	return nil
 }
 
+func GetApplicationsByEmployee(c *fiber.Ctx) error {
+	employeeID := database.Convert(c.Params("id"))
 
+	var employee models.Employee
+	if err := database.Db.First(&employee, "user_id = ?", employeeID).Error; err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error":   err.Error(),
+			"message": "Employee not found",
+		})
+	}
+
+	var applications []models.Application
+	if err := database.Db.Preload("Jobs").Where("employee_id = ?", employee.ID).Find(&applications).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error":   err.Error(),
+			"message": "Could not retrieve applications",
+		})
+	}
+
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"applications": applications,
+	})
+}
