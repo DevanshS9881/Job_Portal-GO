@@ -1,10 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetchJobs();
+    const urlParams = new URLSearchParams(window.location.search);
+    const profileParam = urlParams.get('profile');
+
+    if (profileParam) {
+        document.getElementById('searchP').value = profileParam;
+        fetchJobs(profileParam);
+    } else {
+        fetchJobs();
+    }
     document.getElementById('filterBt').addEventListener('click', function() {
         const prof = document.getElementById('searchP').value;
         const location = document.getElementById('searchL').value;
         fetchJobs(prof, location);
     });
+
+    
 
     // Get the modal
     var modal = document.getElementById('myModal');
@@ -78,10 +88,18 @@ function displayJobs(jobs, prof, location) {
 
             const applyBtn = document.createElement('button');
             applyBtn.className = 'apply-btn';
-            applyBtn.textContent = 'Apply for Job';
+            if(sessionStorage.getItem('token')){
+                applyBtn.textContent = 'Apply for Job';
             applyBtn.addEventListener('click', () => {
                 window.location.href = `apply.html?jobID=${job.ID}`;
             });
+            }
+            else{
+                applyBtn.textContent = 'Login to Apply';
+                applyBtn.addEventListener('click', () => {
+                    window.location.href = `index5.html`;
+                });
+        }
             jobBlock.appendChild(applyBtn);
 
 

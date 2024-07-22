@@ -137,11 +137,23 @@ header {
     text-align: center;
 }
 
+.jobList :hover{
+    /* transform : translateY(-2px); */
+    /* background-color:#ecf3ff ; */
+    /* box-shadow: 0 4px 8px #407ff0;  */
+
+}
+
 .job {
     border: 1px solid #ccc;
     padding: 15px;
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: 2vw;
+    /* background-color: #ecf3ff; */
+    transition: box-shadow 0.3s ease;
+}
+.job:hover{
+    box-shadow: 0 0  10px  #407ff0; 
 }
 
 .job h2 {
@@ -154,11 +166,59 @@ header {
 
 .search {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    margin-bottom: 20px;
 }
+
+.combined-search {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-color:#407ff0;
+    border-width: 0.4vh;
+    border-radius: 20px;
+    overflow: hidden; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    height:7vh;
+}
+
+.combined-search input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+    outline: none; 
+}
+
+.combined-search input:first-child {
+    border-right: 1px solid #ccc; 
+    margin-right: -1px; 
+}
+
+.combined-search input::placeholder {
+    color: #999; 
+}
+
 
 .jobList {
     margin: 10vh;
+    transition: background-color 0.5s ease;
+    
+}
+
+.apply-btn{
+    margin:2vh;
+    height:5vh;
+    width:7vw;
+    border-radius: 0.5vw;
+    background-color:#0096FF ;
+}
+
+.apply-btn:hover{
+    background-color: #407ff0;
+    color: #ecf3ff;
+    font-weight: 500;
 }
 
 /* Modal styles */

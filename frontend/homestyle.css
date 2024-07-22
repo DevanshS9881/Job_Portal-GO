@@ -4,6 +4,13 @@
     font-family:Poppins;
     
 }
+body {
+    display: flex;
+    flex-direction: column;
+    height:100%; /* Minimum height of the viewport */
+    margin: 0;
+    overflow-x:hidden;
+}
 ::-webkit-scrollbar{
     width:0.5rem;
     height: 0.5rem;
@@ -91,6 +98,17 @@ justify-content: center;
     justify-content: center;
     width:80%;
 }
+
+.footer {
+    background-color: #407ff0; /* Blue background color */
+    color: #ffffff; /* White text color */
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    margin-top:5vh;
+    width: 100%;
+}
 .heading{
     display:flex;
     align-items: center;
@@ -127,6 +145,8 @@ justify-content: center;
     justify-content: center;
     align-items: center;
     font-size: 140%;
+    position: relative;
+    transition:background-color 0.5s ease;
 }
 .grid-box{
     text-align: center;
@@ -136,6 +156,7 @@ justify-content: center;
 .profile-box:hover{
     background-color: #407ff0;
     color: whitesmoke;
+    transform : translateY(-15px);
 }
 
 /* Dropdown container */

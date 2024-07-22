@@ -1,10 +1,29 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f0f5f9; /* light blueish background */
+    color: #333; /* dark text color */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff; /* white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow */
+}
+
+h1 {
+    color: #4a90e2; /* medium blue heading color */
+    text-align: center;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 th, td {
@@ -14,11 +33,11 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #f2f2f2; /* light gray header background */
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* off-white row background */
 }
 
 .modal {
@@ -30,16 +49,17 @@ tr:nth-child(even) {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.4); /* semi-transparent black overlay */
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #fff; /* white modal background */
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
 }
 
 .close-button {
@@ -47,13 +67,13 @@ tr:nth-child(even) {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .close-button:hover,
 .close-button:focus {
-    color: black;
+    color: #333; /* dark text on hover */
     text-decoration: none;
-    cursor: pointer;
 }
 
 .modal-body {
@@ -68,12 +88,14 @@ tr:nth-child(even) {
 button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #4a90e2; /* medium blue button */
+    color: #fff; /* white text */
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #357bd8; /* slightly darker blue on hover */
 }

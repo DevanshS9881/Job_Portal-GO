@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="homestyle.css"
+    <title>Jobkart</title>
+    <link rel="stylesheet" href="homestyle.css">
 </head>
 <body>
     <header>
         <section class="top">
-            <a href="home.html" class="logo">Jobkart</a>
+            <a href="homepage.html" class="logo">Jobkart</a>
             <nav class="navbar">
-                <a href="home.html" class="link">Home</a>
+                <a href="homepage.html" class="link">Home</a>
                 <a href="findJob.html" class="link">Find Jobs</a>
                 <a href="about.html" class="link">About Us</a>
                 <div class="dropdown">
@@ -28,63 +28,71 @@
     </header>
 
     <div class="home">
-        <div class ="content">
+        <div class="content">
             <div class="text">
-           <p class="main"> <h1>We Help you find your dream job</h1></p>
-            <p><h6>Discover more than 8000+ Jobs on Jobkart</h3></p>
-           <div class="bt"><button type="submit " class="findBt">Get Started</button></div>
+                <h1>We Help you find your dream job</h1>
+                <h6>Discover more than 8000+ Jobs on Jobkart</h6>
+                <div class="bt">
+                    <button type="submit" class="findBt">Get Started</button>
+                </div>
+            </div>
+            <div class="sideImage">
+                <img class="image" src="bg.png">
+            </div>
         </div>
-        <div class="sideImage">
-            <img class="image" src="bg.png">
-        </div>
-        </div>
-
     </div>
+
     <div class="category">
         <section class="category-section">
-           <div class="heading"> <h2>Explore By Top Profiles</h2></div>
-
+            <div class="heading">
+                <h2>Explore By Top Profiles</h2>
+            </div>
             <div class="grid-container">
-                <a href="#" class="profile-box ">
-                <div class="grid-box">
-                    <h3>Web Developer </h3>
-                    <span>jobs</span>
-                </div>
-            </a>
-            <a href="#" class="profile-box ">
-                <div class="grid-box">
-                    <h3> DevOps Manager </h3>
-                    <span>jobs</span>
-                </div>
-            </a>
-           
-            <a href="#" class="profile-box ">
-                <div class="grid-box">
-                    <h3>App Developer</h3>
-                    <span>jobs</span>
-                </div>
-            </a>
-            <a href="#" class="profile-box ">
-                <div class="grid-box">
-                    <h3>Finance & Sales</h3>
-                    <span>jobs</span>
-                </div>
-            </a>
-            <a href="#" class="profile-box ">
-                <div class="grid-box">
-                    <h3>Human Resource</h3>
-                    <span>jobs</span>
-                </div>
-            </a>
-            <a href="#" class="profile-box ">
-                <div class="grid-box">
-                    <h3>Consultancy</h3>
-                    <span>jobs</span>
-                </div>
-            </a>
-        </div>
+                <a href="findJob.html?profile=Web Developer" class="profile-box" id="web-developer">
+                    <div class="grid-box">
+                        <h3>Web Developer</h3>
+                        <span class="jobs-count">Loading...</span>
+                    </div>
+                </a>
+                <a href="findJob.html?profile=DevOps Manager" class="profile-box" id="devops-manager">
+                    <div class="grid-box">
+                        <h3>DevOps Manager</h3>
+                        <span class="jobs-count">Loading...</span>
+                    </div>
+                </a>
+                <a href="findJob.html?profile=App Developer" class="profile-box" id="app-developer">
+                    <div class="grid-box">
+                        <h3>App Developer</h3>
+                        <span class="jobs-count">Loading...</span>
+                    </div>
+                </a>
+                <a href="findJob.html?profile=Finance & Sales" class="profile-box" id="finance-sales">
+                    <div class="grid-box">
+                        <h3>Finance & Sales</h3>
+                        <span class="jobs-count">Loading...</span>
+                    </div>
+                </a>
+                <a href="findJob.html?profile=Human Resource" class="profile-box" id="human-resource">
+                    <div class="grid-box">
+                        <h3>Human Resource</h3>
+                        <span class="jobs-count">Loading...</span>
+                    </div>
+                </a>
+                <a href="findJob.html?profile=Consultancy" class="profile-box" id="consultancy">
+                    <div class="grid-box">
+                        <h3>Consultancy</h3>
+                        <span class="jobs-count">Loading...</span>
+                    </div>
+                </a>
+            </div>
         </section>
+
+        
     </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Jobkart. All rights reserved. | Contact: +1-123-456-7890 | Email: support@jobkart.com</p>
+    <div>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script src="home.js"></script>
 </body>

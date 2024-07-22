@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             jobDiv.appendChild(removeBtn);
+            jobDiv.style.backgroundColor="white";
+            jobDiv.style.borderRadius="1.5vw";
+            jobDiv.style.padding="28px";
 
             jobList.appendChild(jobDiv);
         });

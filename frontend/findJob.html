@@ -9,9 +9,9 @@
 <body>
     <header>
         <section class="top">
-            <a href="home.html" class="logo">Jobkart</a>
+            <a href="homepage.html" class="logo">Jobkart</a>
             <nav class="navbar">
-                <a href="home.html" class="link">Home</a>
+                <a href="homepage.html" class="link">Home</a>
                 <a href="findJob.html" class="link">Find Jobs</a>
                 <a href="about.html" class="link">About Us</a>
                 <div class="dropdown">
@@ -30,15 +30,12 @@
         <div class="filter">
             <div class="heading">Filter Jobs</div>
             <div class="search">
-                <div class="profileS">
-                    <label for="search">Enter Profile</label>
-                    <input type="text" id="searchP" placeholder="eg. App Developer">
-                </div>
-                <div class="locationS">
-                    <label for="search">Enter Location</label>
-                    <input type="text" id="searchL" placeholder="eg. Gurugram">
+                <div class="combined-search">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABBklEQVRIS91VQQrCMBBMA7mIgv6gz9C/KJ59kS/wK+I7vIvgtRCcpqYmNsmkhQhaWFqyuzObnU1aicJPVRhfMIIaBaxhq0ghd6yfYddYoYxgj8RZOFliWbeuB+w0leDwSjxGAJiftogBML9HwPqdOw+eLq4GOyDMhVB4NRTMRvVK+Bm9Li4B3S5l7QI8nP8kwC7TOry9gTgFVRpzPsxoOy2S6F3riMgWFCBZyCeBL04Az4onJGrQuqswETedYMzp/uYUWQ2iW888BgqtNAd1dIsyCaBlNyeFCCQIzJQOCbZYXNgy+Y2UHOfgXVQDfANbDnvB6ZycG74vMPOXY3+03L5H436f4Ancbj4ZIsZgAgAAAABJRU5ErkJggg=="/> <input type="text" id="searchP" placeholder="Profile (eg. App Developer)">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACUElEQVRIS7WVy2sTYRTFTzIzqY9qK+KDLooWxI1240p8LFSq7tQq4lbwbxJXbkQQwSoI1ZW4sbhQdOPGB7VCqKBIa311Mom/+3WSJpN5dZEbbjLzzZl7ztzzzU1FA47KgOurDMEwIg6Q4+ROJ8jzvimKFjh6T/7KE5lHUNOQTuuf9iULVFVVkw/RIj+Sz8hGGlEWga+aLmk1VpwnMQikMPwK5CHpWLsjlWCTdOqvdDAJppTCoMpXU+64B+C/5SFelCHYAegqCTnF+kW1a1j/P5BT5gqEEYR3OP6d/wSbdVx/dLigK80w1F0wP6WR/dLSuVjMS9ZeF7XoGoDRAIdDHE6J+SHJx9FtkY7OSHMnwUzEuDq/j3IJPHk3IrX8tdb0dXqexafSFdp3/yxX99IW+DqBdbpdQBBcjxS6mxIOLLApZ3HGmO3SeXLcNASwxIYXE8jTtCLtduKjjsf2Us3GZ3HxKsXhWseYpkWStq1H3zb15Z9oqHHIRAaIpdpnnHjiirc4rbhdg7Gp8YbVuVwCaXiXtHK5C3SrrRxjpjC3q3jSowl21qelAgJ32QggcnEz7nmG8g7JF3CPk8+VNSqs+DSZuJ754rWYhPcw6kdZAnD+MV79yd4belvSRfcO3PM0V/Kmqd1/AVv3ZE8LV/I7+YDc0DRti2Hu6SI52q/O6V/W2JEZ1V/1zJ8yJndjthgJzdlui+6FWuvNMt82FlbSWtNeK/OPZtitNdq1GpNwvqgxRka9d3Ju1IMk3tp1hrSdYnPf/s0Ko+wTFBbKAgyc4D+7y4wZLWbBQAAAAABJRU5ErkJggg=="/>  <input type="text" id="searchL" placeholder="Location (eg. Gurugram)">
                 </div>
             </div>
+            
             <button type="submit" id="filterBt">Search</button>
         </div>
         <div class="jobList" id="jobList"></div>
@@ -52,6 +49,8 @@
             <button id="applyBt">Apply</button>
         </div>
     </div>
+
+   
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script src="findJob.js"></script>
     

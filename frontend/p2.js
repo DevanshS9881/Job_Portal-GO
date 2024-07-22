@@ -46,7 +46,7 @@ function fetchProfile(endpointUrl, token, role) {
     .then(Data => {
         console.log(Data);
         if (role === "Employee") {
-            document.getElementById('heading').textContent = "EMPLOYEE PROFILE";
+            //document.getElementById('heading').textContent = "EMPLOYEE PROFILE";
             document.getElementById('name').textContent = Data.data.Name;
             document.getElementById('userId').textContent = Data.data.ID;
             document.getElementById('dob').textContent = Data.data.Employee.BirthDate;
@@ -68,7 +68,7 @@ function fetchProfile(endpointUrl, token, role) {
             document.getElementById('updateBio').value = Data.data.Employee.Bio;
 
         } else {
-            document.getElementById('heading').textContent = "EMPLOYER PROFILE";
+            //document.getElementById('heading').textContent = "EMPLOYER PROFILE";
             document.getElementById('name').textContent = Data.data.Name;
             document.getElementById('userId').textContent = Data.data.ID;
             document.getElementById('dob').textContent = Data.data.Employer.BirthDate;
@@ -85,6 +85,7 @@ function fetchProfile(endpointUrl, token, role) {
             document.getElementById('updateEmail').value = Data.data.Email;
             document.getElementById('updateLocation').value = Data.data.Employer.City;
             document.getElementById('updateF6').value = Data.data.Employer.Company;
+            document.querySelector('.bio').style.display = 'none';
         }
     })
     .catch(error => {
@@ -101,7 +102,7 @@ function showUpdateForm(role) {
         document.querySelector('.bio').style.display = 'flex';
         document.getElementById('f6Label').textContent = "Skill";
     } else {
-        document.querySelector('.bio').style.display = 'none';
+        //document.querySelector('.form-row bio').style.display = 'none';
         document.getElementById('f6Label').textContent = "Company";
     }
 }

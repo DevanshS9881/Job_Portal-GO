@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <link rel="stylesheet" href="profileEE.css">
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
         }
@@ -37,14 +38,17 @@
         .update-form {
             display: none;
         }
-    </style>
+    </style> -->
 </head>
 <body>
+    <div id="heading">
+        <h1> Your Profile </h1>
+    </div>
     <div class="container">
+        
+
         <div class="content">
-            <div id="heading">
-                <h1> Employee Profile </h1>
-            </div>
+            
             <div class="profile-row">
                 <div class="field" id="f1">Name:</div>
                 <div class="data" id="name">Loading...</div>
@@ -106,7 +110,7 @@
                 <label id="f6Label" for="updateF6">Field:</label>
                 <input type="text" id="updateF6">
             </div>
-            <div class="form-row bio">
+            <div class="form-row bio" id="bio">
                 <label for="updateBio">Bio:</label>
                 <textarea id="updateBio"></textarea>
             </div>
