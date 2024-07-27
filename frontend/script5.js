@@ -85,17 +85,12 @@ document.getElementById('loginBt').addEventListener('click', async function(even
     }
 });
 document.getElementById('googleUp').addEventListener('click', async function() {
-    window.location.href = 'http://127.0.0.1:8081/google_login'; // Update this URL to match your backend's Google OAuth URL
+    window.location.href = 'http://127.0.0.1:8081/google_login'; 
     const params = new URLSearchParams(window.location.search);
-    console.log(params);
-            const code = params.get('code');
-            const state = params.get('state');
-            console.log(code);
-            console.log(state);
-
-            if (code && state) {
+    const code = params.get('code');
+    const state = params.get('state');
                 try {
-                    const response = await fetch(`http://127.0.0.1:8081/google_callback?code=${code}&state=${state}`, { 
+                    const response = await fetch(`http://127.0.0.1:8081/google_callback?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`, { 
                                 method: 'GET',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -105,18 +100,18 @@ document.getElementById('googleUp').addEventListener('click', async function() {
                     console.log(data.token);
 
                     if (data.token) {
-                        // Store the token in session storage
-                        sessionStorage.setItem('authToken', data.token);
+                        
+                        sessionStorage.setItem('token', data.token);
 
                         // Redirect to protected page
-                        window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html';
+                       // window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html';
                     } else {
                         console.error('Token not found in response:', data);
                     }
                 } catch (error) {
                     console.error('Failed to fetch token:', error);
                 }
-            }
+            // }
         });
 
 

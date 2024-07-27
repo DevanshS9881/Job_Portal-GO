@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     const token = sessionStorage.getItem('token');
     console.log(token);
+    var logoutLink = document.getElementById('logout');
+        logoutLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        var confirmLogout = confirm("Are you sure you want to logout?");
+        if (confirmLogout) {
+            sessionStorage.removeItem('token');
+            window.location.href = 'index5.html'; 
+        }
+    });
     if (token) {
         const decoded = jwt_decode(token);
         console.log(decoded);
@@ -32,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     else {
+        
       const loginLink=document.createElement('a');
       loginLink.className="link";
       loginLink.textContent="Register/Login";

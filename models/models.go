@@ -6,6 +6,11 @@ import (
 )
 type Claims struct {
 	jwt.StandardClaims
+	ID string `json:"ID"`
+	Email string `json:"email"`
+	Expi string `json:"expi"`
+	Role string `json:"role"`
+
 }
 type Roles struct{
 	Role string `json:"Role"`

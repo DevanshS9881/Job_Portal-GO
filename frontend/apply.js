@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const jobId = urlParams.get('jobID');
-    const token =jwt_decode(sessionStorage.getItem('token'));
-    const id=token.ID;
+    const token = jwt_decode(sessionStorage.getItem('token'));
+    const id = token.ID;
 
     document.getElementById('applyBt').addEventListener('click', async function() {
         // event.preventDefault();
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const applyLetter = document.getElementById('letter').value;
 
         const applicationData = {
-            JobsId: parseInt(jobId,10),
+            JobsId: parseInt(jobId, 10),
             Letter: applyLetter,
         };
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`, // Corrected syntax here
                 },
                 body: JSON.stringify(applicationData),
             });

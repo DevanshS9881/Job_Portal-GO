@@ -4,9 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 
 	//"fmt"
-	"io/ioutil"
+	//"io/ioutil"
 	"net/http"
 	"time"
 
@@ -58,7 +59,7 @@ func GoogleLogin(c *fiber.Ctx) error {
 
 	//c.Status(fiber.StatusSeeOther)
 	return c.Redirect(url, fiber.StatusSeeOther)
-	//	return c.JSON(url)
+	//	return c.JSON(url)	
 }
 
 func GoogleCallback(c *fiber.Ctx) error {
@@ -82,7 +83,7 @@ func GoogleCallback(c *fiber.Ctx) error {
 	}
 	defer resp.Body.Close()
 
-	userData, err := ioutil.ReadAll(resp.Body)
+	userData, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return c.SendString("JSON Parsing Failed")
 	}
@@ -98,15 +99,6 @@ func GoogleCallback(c *fiber.Ctx) error {
 			})
 			return result.Error
 		}
-		if result.Error != nil {
-			c.Status(400).JSON(&fiber.Map{
-				"data":    nil,
-				"success": false,
-				"message": result.Error,
-			})
-			return result.Error
-		}
-		//return nil,errors.New("user is not found")
 		newUser.Role = "employee"
 		database.Db.Save(&newUser)
 	}

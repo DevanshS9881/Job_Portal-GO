@@ -52,6 +52,9 @@ body{
 .content .logo{
     font-size: 70px;
 }
+.logolink{
+    text-decoration: none;
+}
 .sidetext h2{
     font-size: 55px;
     line-height: 1;

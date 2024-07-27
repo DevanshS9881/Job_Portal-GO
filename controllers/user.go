@@ -43,6 +43,7 @@ func Register(c *fiber.Ctx) error {
 		"ID": newUser.ID,
 		"email":newUser.Email,
 		"expi":time.Now().Add(day*1).Unix(),
+		"role":"Employee",
 	}
 	token:=jtoken.NewWithClaims(jtoken.SigningMethodHS256,claims)
 	t,err:=token.SignedString([]byte(config.Secret))

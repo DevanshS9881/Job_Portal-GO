@@ -6,98 +6,126 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title>Role</title>
     <style>
-        *{
-            background-color: bisque;
-             margin: 0px;
-            padding: 40px; 
-            justify-content: center;
-            align-items: center;
-            align-content: center;
-
-        }
-        .conatiner{
-            display: flex;
-            flex-direction: row;
-            /*justify-content: center;*/
-            /*align-content: center;*/
-            align-items: center;
-            height:10vh; 
-            width:50vh;
-            justify-items: center;
-            
-        }
-        .images{
-            display: flex;
-
-        }
-        button{
-            border:none;
-            cursor: pointer;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-
         }
-        .role{
+        body {
+            background-color: #e0f2f1; /* Bluish background */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            color: #00838f; /* Dark blue */
+        }
+        .images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .images button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .images button img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #00838f; /* Dark blue border */
+            transition: transform 0.3s ease;
+        }
+        .images button img:hover {
+            transform: scale(1.1);
+        }
+        .role {
             display: flex;
             flex-direction: column;
+            align-items: center;
+        }
+        .role p {
+            color: #00838f; /* Dark blue */
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="role">
-        <h1> CHOOSE YOUR ROLE </h1>
-        
+            <h1>CHOOSE YOUR ROLE</h1>
             <div class="images">
-               <button type ="submit" id="employee"><img src="loyee.png"></button>
-                <button type ="submit" id="employer"> <img src="loyer.png"></button>
+                <button id="employee"><img src="loyee.png"><p>Employee</p></button>
+                <button id="employer"><img src="loyer.png"><p>Employer</p></button>
             </div>
         </div>
     </div>
+
     <script>
         window.onload = function() {
-     if (sessionStorage.getItem('token') == null) {
-        window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+            if (sessionStorage.getItem('token') == null) {
+                window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+            }
+        };
+
+        document.getElementById("employee").addEventListener("click", async function(e) {
+    e.preventDefault();
+    const role = "Employee";
+    const token = sessionStorage.getItem('token');
+    const response = await fetch("http://127.0.0.1:8081/role", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({ role })
+    });
+    if (response.ok) {
+        const data = await response.json(); 
+        const newToken = data.token; 
+        sessionStorage.setItem('token', newToken); 
+        alert("Role assigned");
+        window.location.href = "http://127.0.0.1:3000/frontend/homepage.html";
+    } else {
+        alert("Failed to assign role"); 
     }
-};
-        document.getElementById("employee").addEventListener("click",async function(e){
-            e.preventDefault();
-            const role="Employee"
-            const token=sessionStorage.getItem('token')
-            const response=await fetch("http://127.0.0.1:8081/role",{
-                method: 'POST',
-                headers: {
-                    'Content-Type':'application/json',
-                    'Authorization':'Bearer'+ token
-                },
-                body: JSON.stringify({role})
-            });
-            if(response.ok){
-                alert("Role assigned")
-                window.location.href="http://127.0.0.1:3002/frontend/homepage.html";
-            }
+});
 
-        })
-        document.getElementById("employer").addEventListener("click",async function(e){
-            e.preventDefault();
-            const role="Employer"
-            const token=sessionStorage.getItem('token')
-            const response=await fetch("http://127.0.0.1:8081/role",{
-                method: 'POST',
-                headers: {
-                    'Content-Type':'application/json',
-                    'Authorization':'Bearer'+ token
+document.getElementById("employer").addEventListener("click", async function(e) {
+    e.preventDefault();
+    const role = "Employer";
+    const token = sessionStorage.getItem('token');
+    const response = await fetch("http://127.0.0.1:8081/role", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({ role })
+    });
+    if (response.ok) {
+        console.log(response);
+        const data = await response.json(); 
+        console.log(data);
+        const newToken = data.token; 
+        sessionStorage.setItem('token', newToken); 
+        alert("Role assigned");
+        window.location.href = "http://127.0.0.1:3000/frontend/homepage.html";
+    } else {
+        alert("Failed to assign role"); 
+    }
+});
 
-                },
-                body: JSON.stringify({role})
-            });
-            if(response.ok){
-                alert("Role assigned")
-                window.location.href="http://127.0.0.1:3002/frontend/homepage.html";
-            }
-
-        })
-       
     </script>
 </body>
 </html>

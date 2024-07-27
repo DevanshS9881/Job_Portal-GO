@@ -19,6 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
             showUpdateForm(role);
         });
 
+        document.getElementById('deleteBt').addEventListener('click', function() {
+            const confirmDelete = confirm("Are you sure you want to delete your profile?");
+            if (confirmDelete) {
+                deleteProfile(id, token);
+            }
+        });
+
         // Event listener for form submission
         document.getElementById('submitUpdate').addEventListener('click', function(event) {
             event.preventDefault();
@@ -58,6 +65,8 @@ function fetchProfile(endpointUrl, token, role) {
             document.getElementById('f7Value').textContent = Data.data.Employee.ID;
             document.getElementById('Bio').textContent = Data.data.Employee.Bio;
             document.querySelector('.bio').style.display = "flex";
+            document.querySelector('.bio').style.flexDirection = "column";
+
 
             // Populate update form
             document.getElementById('updateName').value = Data.data.Name;
@@ -95,14 +104,17 @@ function fetchProfile(endpointUrl, token, role) {
 
 function showUpdateForm(role) {
 
-    document.querySelector('.update-form').style.display = 'block';
+    document.querySelector('.update-form').style.display = 'flex';
+    document.querySelector('.update-form').style.flexDirection= 'column';
+
+
     document.querySelector('.content').style.display = 'none';
 
     if (role === "Employee") {
         document.querySelector('.bio').style.display = 'flex';
         document.getElementById('f6Label').textContent = "Skill";
     } else {
-        //document.querySelector('.form-row bio').style.display = 'none';
+        document.getElementById('bio').style.display = 'none';
         document.getElementById('f6Label').textContent = "Company";
     }
 }
@@ -159,4 +171,26 @@ else{
         console.error('Error updating profile:', error);
     });
 }
+}
+
+function deleteProfile(id, token) {
+    fetch(`http://127.0.0.1:8081/deleteUser/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Profile deleted successfully!');
+            sessionStorage.removeItem('token');
+            // Optionally, redirect to a different page or perform other actions
+            window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+        } else {
+            throw new Error('Failed to delete profile');
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting profile:', error);
+    });
 }

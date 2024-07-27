@@ -46,6 +46,16 @@ h1{
     margin: 20px 0;
     text-align: center;
 }
+.delete
+{
+    margin: 20px 0;
+    text-align: center; 
+}
+.buttons{
+    margin:1vh;
+    display:flex;
+    justify-content: center;
+}
 
 button {
     padding: 10px 20px;
@@ -75,6 +85,10 @@ form label {
     margin-bottom: 8px;
 }
 
+.form-row{
+    margin:2vh;
+}
+
 form input[type="text"],
 form input[type="email"],
 form input[type="date"],
@@ -92,7 +106,7 @@ form textarea {
     height: 100px;
 }
 
-.bio {
+.form-row bio {
     display: none;
 }
 

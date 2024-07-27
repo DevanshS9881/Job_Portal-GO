@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 
 	//"gorm.io/driver/postgres"
-	//"gorm.io/gorm"
+	//"gorm.io/gorm"	
 	//"log"
 	//"github.com/DevanshS9881/Job_Portal-GO/models"
 	"github.com/DevanshS9881/Job_Portal-GO/config"
