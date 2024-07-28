@@ -86,6 +86,7 @@ tr:nth-child(even) {
 }
 
 button {
+    display:none;
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #4a90e2; /* medium blue button */

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchJobs(employerId) {
         try {
-            const response = await fetch(`http://127.0.0.1:8081/getJob/${employerId}`);
+            const response = await fetch(`http://127.0.0.1:8081/getJobs/${employerId}`);
             const jobs = await response.json();
             console.log(jobs);
             displayJobs(jobs);
@@ -50,6 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             jobDiv.appendChild(removeBtn);
+            const editBtn = document.createElement('button');
+            editBtn.className = 'edit-btn';
+            editBtn.textContent = 'Edit Job';
+            editBtn.style.margin = '1vw';
+            editBtn.style.fontSize = '100%';
+            editBtn.style.padding = '0.7vw';
+            editBtn.style.borderRadius = '0.5vw';
+            editBtn.addEventListener('click', () => {
+                // Redirect to edit page with job ID as a query parameter
+                window.location.href = `editJob.html?ji=${job.ID}`;
+            });
+            jobDiv.appendChild(editBtn);
             jobDiv.style.backgroundColor="white";
             jobDiv.style.borderRadius="1.5vw";
             jobDiv.style.padding="28px";

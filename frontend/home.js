@@ -1,5 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const token = sessionStorage.getItem('token');
+    let token="";
+    if(sessionStorage.getItem('token')){
+    token = sessionStorage.getItem('token');
+    }
+    else{
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+         token = getCookie('token');
+         sessionStorage.setItem('token',token);
+    }
     console.log(token);
     var logoutLink = document.getElementById('logout');
         logoutLink.addEventListener('click', function(event) {
@@ -74,6 +87,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error fetching jobs:', error);
             });
     });
+    document.querySelector('.findBt').addEventListener('click', function (event) {
+        event.preventDefault();
+        window.location.href = 'http://127.0.0.1:3000/frontend/findJob.html';
+    })
+
 });
 
 

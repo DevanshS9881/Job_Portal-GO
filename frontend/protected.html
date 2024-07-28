@@ -72,16 +72,31 @@
     </div>
 
     <script>
-        window.onload = function() {
-            if (sessionStorage.getItem('token') == null) {
-                window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
-            }
-        };
+        // window.onload = function() {
+        //     if (sessionStorage.getItem('token') == null) {
+        //         window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+        //     }
+        // };
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        const token = getCookie('token');
+
+        if (!token) {
+            // Redirect to login page if no token is found
+            window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+        } else {
+            // Token exists, proceed with loading the protected content
+            console.log('User is authenticated with token:', token);
+        }
 
         document.getElementById("employee").addEventListener("click", async function(e) {
     e.preventDefault();
     const role = "Employee";
-    const token = sessionStorage.getItem('token');
+    //const token = getCookie('token');
     const response = await fetch("http://127.0.0.1:8081/role", {
         method: 'POST',
         headers: {
@@ -104,7 +119,7 @@
 document.getElementById("employer").addEventListener("click", async function(e) {
     e.preventDefault();
     const role = "Employer";
-    const token = sessionStorage.getItem('token');
+    //const token = sessionStorage.getItem('token');
     const response = await fetch("http://127.0.0.1:8081/role", {
         method: 'POST',
         headers: {

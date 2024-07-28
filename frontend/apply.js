@@ -27,12 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             if (response.ok) {
                 alert('Application submitted successfully!');
+                window.location.href="http://127.0.0.1:3000/frontend/apply.html"
             } else {
-                console.error('Failed to submit application:', result.message);
+                if(result.Message=="Invalid Employee" || result.Message=="Invalid Employer")
+                    alert("Please Update Your Profile in Profile Section");
+                if(result.Message=="You have already applied for this job")
+                    alert("You have already applied for this job");
+                console.error('Failed to submit application:', result.Message);
             }
         } catch (error) {
             console.error('Error submitting application:', error);
         }
 
     });
-});
+}); 

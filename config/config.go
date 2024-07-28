@@ -25,7 +25,7 @@ func GoogleConfig() oauth2.Config {
 	}
 
 	AppConfig.GoogleLoginConfig = oauth2.Config{
-		RedirectURL:  "http://127.0.0.1:3000/frontend/protected.html",
+		RedirectURL:  "http://127.0.0.1:8081/google_callback",
 		ClientID:     Load("GOOGLE_CLIENT_ID"),
 		ClientSecret: Load("GOOGLE_CLIENT_SECRET"),
 		Scopes: []string{"https://www.googleapis.com/auth/userinfo.email",

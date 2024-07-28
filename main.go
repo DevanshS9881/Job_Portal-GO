@@ -13,7 +13,7 @@ import (
 	"github.com/DevanshS9881/Job_Portal-GO/config"
 	"github.com/DevanshS9881/Job_Portal-GO/database"
 	"github.com/DevanshS9881/Job_Portal-GO/handler"
-	"github.com/DevanshS9881/Job_Portal-GO/middlewares"
+	//"github.com/DevanshS9881/Job_Portal-GO/middlewares"
 	"github.com/DevanshS9881/Job_Portal-GO/routes"
 )
 func main(){
@@ -22,7 +22,7 @@ func main(){
 	if dbEr!=nil{
 		panic("Connection failed to databse")
 	}
-	jwt:=middlewares.AuthMiddle(config.Secret)
+	//jwt:=middlewares.AuthMiddle(config.Secret)
 	app.Use(cors.New(cors.Config{
         AllowOrigins: "http://127.0.0.1:3000",
         AllowHeaders: "Origin, Content-Type, Accept, Authorization",
@@ -30,7 +30,7 @@ func main(){
 	config.GoogleConfig()
 	app.Static("/", "/frontend")
 	app.Post("/login",handler.Login)
-	app.Get("/protected",jwt,handler.Protected)
+	app.Get("/protected",handler.Protected)
 	app.Get("/google_login", handler.GoogleLogin)
     app.Get("/google_callback",handler.GoogleCallback)
 	routes.SetRoutes(app)

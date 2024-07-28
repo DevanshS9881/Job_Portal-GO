@@ -1,13 +1,13 @@
 function checkLoginStatus() {
     if (sessionStorage.getItem('token') != null) {
-        window.location.href = 'http://127.0.0.1:3000/frontend/protected.html';
+        window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html';
     }
 }
 window.onload = function() {
     // Check if the user is already logged in
      if (sessionStorage.getItem('token') != null) {
         alert("Session is already logged in");
-        window.location.href = 'http://127.0.0.1:3000/frontend/protected.html';
+        window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html';
     }
     
     // Disable caching of the login page to ensure the back button doesn't show the cached page
@@ -84,18 +84,19 @@ document.getElementById('loginBt').addEventListener('click', async function(even
         alert('Signup failed: ' + data.message);
     }
 });
-document.getElementById('googleUp').addEventListener('click', async function() {
+document.getElementById('googleUp').addEventListener('click', async function(event) {
+    event.preventDefault();
     window.location.href = 'http://127.0.0.1:8081/google_login'; 
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
     const state = params.get('state');
                 try {
-                    const response = await fetch(`http://127.0.0.1:8081/google_callback?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`, { 
-                                method: 'GET',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                            });
+                    const response = await fetch('http://127.0.0.1:8081/google_callback?code=' + code + '&state=' + state);
+                            //     method: 'GET',
+                            //     headers: {
+                            //         'Content-Type': 'application/json'
+                            //     },
+                            // });
                     const data = await response.json();
                     console.log(data.token);
 
@@ -103,8 +104,8 @@ document.getElementById('googleUp').addEventListener('click', async function() {
                         
                         sessionStorage.setItem('token', data.token);
 
-                        // Redirect to protected page
-                       // window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html';
+                        //Redirect to protected page
+                       window.location.href = 'http://127.0.0.1:3000/frontend/protected.html';
                     } else {
                         console.error('Token not found in response:', data);
                     }

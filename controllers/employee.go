@@ -35,6 +35,14 @@ func Apply(c *fiber.Ctx) error {
         })
     }
 
+    var existingApplication models.Application
+    if err := database.Db.First(&existingApplication, "employee_id = ? AND jobs_id = ?", existingEmployee.ID, jobID).Error; err == nil {
+        return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+            "Error":   "Application already exists",
+            "Message": "You have already applied for this job",
+        })
+    }
+
     newAppl.EmployeeID = existingEmployee.ID
     newAppl.JobsID = jobID
     result := database.Db.Save(&newAppl)

@@ -217,6 +217,29 @@ func UpdateJob(c *fiber.Ctx) error{
 
 }
 
+func ShowJob(c *fiber.Ctx) error {
+	jobID := database.Convert(c.Params("id"))
+	// if err!=nil{
+	// 	c.Status(400).JSON(fiber.Map{ "Error":"Invalid User ID"})
+	// }
+	var job models.Jobs
+	result := database.Db.First(&job, jobID)
+	if result.Error != nil {
+		return c.Status(400).JSON(&fiber.Map{
+			"data":    nil,
+			"success": false,
+			"message": "No record exists",
+		})
+		
+	}
+	return c.Status(200).JSON(&fiber.Map{
+		"data":    job,
+		"success": true,
+		"message": "Successfully Fetched",
+	})
+	
+}
+
 
  
 
