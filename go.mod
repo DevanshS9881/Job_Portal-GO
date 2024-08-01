@@ -1,6 +1,6 @@
 module github.com/DevanshS9881/Job_Portal-GO
 
-go 1.22.3
+go 1.22
 
 require (
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect

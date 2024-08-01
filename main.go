@@ -24,7 +24,7 @@ func main(){
 	}
 	//jwt:=middlewares.AuthMiddle(config.Secret)
 	app.Use(cors.New(cors.Config{
-        AllowOrigins: "http://127.0.0.1:3000",
+        AllowOrigins: "*",
         AllowHeaders: "Origin, Content-Type, Accept, Authorization",
     }))
 	config.GoogleConfig()

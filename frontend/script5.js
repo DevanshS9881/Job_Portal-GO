@@ -1,13 +1,13 @@
 function checkLoginStatus() {
     if (sessionStorage.getItem('token') != null) {
-        window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html';
+        window.location.href = 'http://127.0.0.1:3004/homepage.html';
     }
 }
 window.onload = function() {
     // Check if the user is already logged in
      if (sessionStorage.getItem('token') != null) {
         alert("Session is already logged in");
-        window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html';
+        window.location.href = 'http://127.0.0.1:3004/homepage.html';
     }
     
     // Disable caching of the login page to ensure the back button doesn't show the cached page
@@ -37,7 +37,7 @@ document.getElementById('signupBt').addEventListener('click', async function(eve
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const response = await fetch('http://127.0.0.1:8081/register', { 
+    const response = await fetch('http://127.0.0.1:8082/register', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -53,21 +53,21 @@ document.getElementById('signupBt').addEventListener('click', async function(eve
     if (response.ok) {
         sessionStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
-        window.location.href = 'http://127.0.0.1:3000/frontend/protected.html'; 
+        window.location.href = 'http://127.0.0.1:3004/protected.html'; 
     } else {
         alert('Signup failed: ' + data.message);
     }
 });
 
 // document.getElementById('googleUp').addEventListener('click', function() {
-//       window.location.href = 'http://127.0.0.1:8081/google_login'; // Update this URL to match your backend's Google OAuth URL
+//       window.location.href = 'http://127.0.0.1:8082/google_login'; // Update this URL to match your backend's Google OAuth URL
 //  });
 document.getElementById('loginBt').addEventListener('click', async function(event) {
     event.preventDefault()
     const email = document.getElementById('emailLogin').value;
     const password = document.getElementById('passwordLogin').value;
 
-    const response = await fetch('http://127.0.0.1:8081/login', { 
+    const response = await fetch('http://127.0.0.1:8082/login', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -79,19 +79,19 @@ document.getElementById('loginBt').addEventListener('click', async function(even
     if (response.ok) {
         sessionStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
-        window.location.href = 'http://127.0.0.1:3000/frontend/homepage.html'; 
+        window.location.href = 'http://127.0.0.1:3004/homepage.html'; 
     } else {
         alert('Signup failed: ' + data.message);
     }
 });
 document.getElementById('googleUp').addEventListener('click', async function(event) {
     event.preventDefault();
-    window.location.href = 'http://127.0.0.1:8081/google_login'; 
+    window.location.href = 'http://127.0.0.1:8082/google_login'; 
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
     const state = params.get('state');
                 try {
-                    const response = await fetch('http://127.0.0.1:8081/google_callback?code=' + code + '&state=' + state);
+                    const response = await fetch('http://127.0.0.1:8082/google_callback?code=' + code + '&state=' + state);
                             //     method: 'GET',
                             //     headers: {
                             //         'Content-Type': 'application/json'
@@ -105,7 +105,7 @@ document.getElementById('googleUp').addEventListener('click', async function(eve
                         sessionStorage.setItem('token', data.token);
 
                         //Redirect to protected page
-                       window.location.href = 'http://127.0.0.1:3000/frontend/protected.html';
+                       window.location.href = 'http://127.0.0.1:3004/protected.html';
                     } else {
                         console.error('Token not found in response:', data);
                     }
@@ -121,7 +121,7 @@ document.getElementById('googleUp').addEventListener('click', async function(eve
 
 
 
-//     const response = await fetch('http://127.0.0.1:8081/google_callback', { 
+//     const response = await fetch('http://127.0.0.1:8082/google_callback', { 
 //         method: 'GET',
 //         headers: {
 //             'Content-Type': 'application/json'

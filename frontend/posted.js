@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchJobs(employerId) {
         try {
-            const response = await fetch(`http://127.0.0.1:8081/getJobs/${employerId}`);
+            const response = await fetch(`http://127.0.0.1:8082/getJobs/${employerId}`);
             const jobs = await response.json();
             console.log(jobs);
             displayJobs(jobs);
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function removeJob(jobId, jobDiv) {
         try {
-            const response = await fetch(`http://127.0.0.1:8081/deleteJob/${jobId}`, {
+            const response = await fetch(`http://127.0.0.1:8082/deleteJob/${jobId}`, {
                 method: 'DELETE',
                 headers:{
                     'Authorization':`Bearer ${sessionStorage.getItem('token')}`

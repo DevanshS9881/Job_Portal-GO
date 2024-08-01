@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded',function() {
         const id = decoded.ID;
         console.log(id);
 
-        const endpointUrl = `http://127.0.0.1:8081/addJob/${id}`;
+        const endpointUrl = `http://127.0.0.1:8082/addJob/${id}`;
         const role = decoded.role;
         console.log(role);
         document.getElementById('submitUpdate').addEventListener('click',function(){
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded',function() {
     }
     else{
         alert("Please login");
-        window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+        window.location.href = 'http://127.0.0.1:3004/index5.html';
     }
 
     

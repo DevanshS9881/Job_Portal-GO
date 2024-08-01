@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const id = decoded.ID;
         console.log(id);
 
-        const endpointUrl = `http://127.0.0.1:8081/getProfile/${id}`;
+        const endpointUrl = `http://127.0.0.1:8082/getProfile/${id}`;
         const role = decoded.role;
         console.log(role);
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         alert("Please login");
-        window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+        window.location.href = 'http://127.0.0.1:3004/index5.html';
     }
 });
 
@@ -134,7 +134,7 @@ function submitUpdateForm(id, token, role) {
         updatedData.Company = document.getElementById('updateF6').value;
     }
     if (role === "Employee") {
-    fetch(`http://127.0.0.1:8081/updateProfileEmployee/${id}`, {
+    fetch(`http://127.0.0.1:8082/updateProfileEmployee/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ function submitUpdateForm(id, token, role) {
     });
 }
 else{
-    fetch(`http://127.0.0.1:8081/updateProfileEmployer/${id}`, {
+    fetch(`http://127.0.0.1:8082/updateProfileEmployer/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ else{
 }
 
 function deleteProfile(id, token) {
-    fetch(`http://127.0.0.1:8081/deleteUser/${id}`, {
+    fetch(`http://127.0.0.1:8082/deleteUser/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -185,7 +185,7 @@ function deleteProfile(id, token) {
             alert('Profile deleted successfully!');
             sessionStorage.removeItem('token');
             // Optionally, redirect to a different page or perform other actions
-            window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+            window.location.href = 'http://127.0.0.1:3004/index5.html';
         } else {
             throw new Error('Failed to delete profile');
         }

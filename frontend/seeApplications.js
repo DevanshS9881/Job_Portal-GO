@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const token = sessionStorage.getItem('token');
     const decoded = jwt_decode(token);
     const employeeId = decoded.ID;
-    const endpoint = `http://127.0.0.1:8081/getApplications/${employeeId}`;
+    const endpoint = `http://127.0.0.1:8082/getApplications/${employeeId}`;
 
     fetch(endpoint, {
         headers: {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // document.getElementById("delete-button").addEventListener("click", () => {
         //     // Handle delete action
-        //     fetch(`http://127.0.0.1:8081/delete/${application.ID}`, {
+        //     fetch(`http://127.0.0.1:8082/delete/${application.ID}`, {
         //         method: 'DELETE',
         //         headers: {
         //             'Authorization': `Bearer ${token}`,

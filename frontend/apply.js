@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch(`http://127.0.0.1:8081/apply/${id}/${jobId}`, {
+            const response = await fetch(`http://127.0.0.1:8082/apply/${id}/${jobId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             if (response.ok) {
                 alert('Application submitted successfully!');
-                window.location.href="http://127.0.0.1:3000/frontend/apply.html"
+                window.location.href="http://127.0.0.1:3004/apply.html"
             } else {
                 if(result.Message=="Invalid Employee" || result.Message=="Invalid Employer")
                     alert("Please Update Your Profile in Profile Section");

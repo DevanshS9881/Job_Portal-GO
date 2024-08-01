@@ -74,7 +74,7 @@
     <script>
         // window.onload = function() {
         //     if (sessionStorage.getItem('token') == null) {
-        //         window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+        //         window.location.href = 'http://127.0.0.1:3004/index5.html';
         //     }
         // };
         function getCookie(name) {
@@ -82,12 +82,17 @@
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
-
-        const token = getCookie('token');
+        var token
+        if(getCookie('token')){
+         token = getCookie('token');
+        }
+        else{
+         token=sessionStorage.getItem('token');
+        }
 
         if (!token) {
             // Redirect to login page if no token is found
-            window.location.href = 'http://127.0.0.1:3000/frontend/index5.html';
+            window.location.href = 'http://127.0.0.1:3004/index5.html';
         } else {
             // Token exists, proceed with loading the protected content
             console.log('User is authenticated with token:', token);
@@ -97,7 +102,7 @@
     e.preventDefault();
     const role = "Employee";
     //const token = getCookie('token');
-    const response = await fetch("http://127.0.0.1:8081/role", {
+    const response = await fetch("http://127.0.0.1:8082/role", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -110,7 +115,7 @@
         const newToken = data.token; 
         sessionStorage.setItem('token', newToken); 
         alert("Role assigned");
-        window.location.href = "http://127.0.0.1:3000/frontend/homepage.html";
+        window.location.href = "http://127.0.0.1:3004/homepage.html";
     } else {
         alert("Failed to assign role"); 
     }
@@ -120,7 +125,7 @@ document.getElementById("employer").addEventListener("click", async function(e) 
     e.preventDefault();
     const role = "Employer";
     //const token = sessionStorage.getItem('token');
-    const response = await fetch("http://127.0.0.1:8081/role", {
+    const response = await fetch("http://127.0.0.1:8082/role", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -135,7 +140,7 @@ document.getElementById("employer").addEventListener("click", async function(e) 
         const newToken = data.token; 
         sessionStorage.setItem('token', newToken); 
         alert("Role assigned");
-        window.location.href = "http://127.0.0.1:3000/frontend/homepage.html";
+        window.location.href = "http://127.0.0.1:3004/homepage.html";
     } else {
         alert("Failed to assign role"); 
     }

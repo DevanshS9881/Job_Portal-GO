@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             document.getElementById('postBt').addEventListener('click', function (event) {
                 event.preventDefault();
-                window.location.href = 'http://127.0.0.1:3000/frontend/postJob.html';
+                window.location.href = 'http://127.0.0.1:3004/postJob.html';
             })
 
         }
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     profiles.forEach(({ id, profile }) => {
         var encodedProfile=encodeURIComponent(profile);
-        fetch(`http://127.0.0.1:8081/jobs/profiles/${encodedProfile}`)
+        fetch(`http://127.0.0.1:8082/jobs/profiles/${encodedProfile}`)
             .then(response => response.json())
             .then(data => {
                 document.querySelector(`#${id} .jobs-count`).textContent = `${data.length} jobs`;
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.querySelector('.findBt').addEventListener('click', function (event) {
         event.preventDefault();
-        window.location.href = 'http://127.0.0.1:3000/frontend/findJob.html';
+        window.location.href = 'http://127.0.0.1:3004/findJob.html';
     })
 
 });

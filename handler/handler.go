@@ -89,10 +89,10 @@ func Protected(c *fiber.Ctx) error {
 		}
 		var newUser models.User
 		json.Unmarshal(userData, &newUser)
-		link:="http://127.0.0.1:3000/frontend/homepage.html"
+		link:="http://127.0.0.1:3004/homepage.html"
 		if err := database.Db.Where("email = ?", newUser.Email).First(&newUser).Error; err != nil {
 			result := database.Db.Create(&newUser)
-			link="http://127.0.0.1:3000/frontend/protected.html"
+			link="http://127.0.0.1:3004/protected.html"
 			if result.Error != nil {
 				c.Status(400).JSON(&fiber.Map{
 					"data":    nil,

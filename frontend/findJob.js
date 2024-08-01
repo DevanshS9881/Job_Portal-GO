@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchJobs(prof = '', location = '') {
-    fetch('http://127.0.0.1:8081/allJobs') // Replace with your actual backend URL
+    fetch('http://127.0.0.1:8082/allJobs') // Replace with your actual backend URL
         .then(response => response.json())
         .then(data => {
             if (data.success) {
