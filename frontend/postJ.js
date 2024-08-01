@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded',function() {
     }
     else{
         alert("Please login");
-        window.location.href = 'http://127.0.0.1:3004/index5.html';
+        window.location.href = 'index5.html';
     }
 
     

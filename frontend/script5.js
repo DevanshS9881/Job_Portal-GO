@@ -1,13 +1,13 @@
 function checkLoginStatus() {
     if (sessionStorage.getItem('token') != null) {
-        window.location.href = 'http://127.0.0.1:3004/homepage.html';
+        window.location.href = 'homepage.html';
     }
 }
 window.onload = function() {
     // Check if the user is already logged in
      if (sessionStorage.getItem('token') != null) {
         alert("Session is already logged in");
-        window.location.href = 'http://127.0.0.1:3004/homepage.html';
+        window.location.href = 'homepage.html';
     }
     
     // Disable caching of the login page to ensure the back button doesn't show the cached page
@@ -53,7 +53,7 @@ document.getElementById('signupBt').addEventListener('click', async function(eve
     if (response.ok) {
         sessionStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
-        window.location.href = 'http://127.0.0.1:3004/protected.html'; 
+        window.location.href = 'protected.html'; 
     } else {
         alert('Signup failed: ' + data.message);
     }
@@ -79,7 +79,7 @@ document.getElementById('loginBt').addEventListener('click', async function(even
     if (response.ok) {
         sessionStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
-        window.location.href = 'http://127.0.0.1:3004/homepage.html'; 
+        window.location.href = 'homepage.html'; 
     } else {
         alert('Signup failed: ' + data.message);
     }
@@ -105,7 +105,7 @@ document.getElementById('googleUp').addEventListener('click', async function(eve
                         sessionStorage.setItem('token', data.token);
 
                         //Redirect to protected page
-                       window.location.href = 'http://127.0.0.1:3004/protected.html';
+                       window.location.href = 'protected.html';
                     } else {
                         console.error('Token not found in response:', data);
                     }

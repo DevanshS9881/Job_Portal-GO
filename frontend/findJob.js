@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             document.getElementById('postBt').addEventListener('click', function (event) {
                 event.preventDefault();
-                window.location.href = 'http://127.0.0.1:3000/frontend/postJob.html';
+                window.location.href = 'postJob.html';
             })
 
         }

@@ -92,7 +92,7 @@
 
         if (!token) {
             // Redirect to login page if no token is found
-            window.location.href = 'http://127.0.0.1:3004/index5.html';
+            window.location.href ='index5.html';
         } else {
             // Token exists, proceed with loading the protected content
             console.log('User is authenticated with token:', token);
@@ -115,7 +115,7 @@
         const newToken = data.token; 
         sessionStorage.setItem('token', newToken); 
         alert("Role assigned");
-        window.location.href = "http://127.0.0.1:3004/homepage.html";
+        window.location.href = "hthomepage.html";
     } else {
         alert("Failed to assign role"); 
     }
@@ -140,7 +140,7 @@ document.getElementById("employer").addEventListener("click", async function(e) 
         const newToken = data.token; 
         sessionStorage.setItem('token', newToken); 
         alert("Role assigned");
-        window.location.href = "http://127.0.0.1:3004/homepage.html";
+        window.location.href = "homepage.html";
     } else {
         alert("Failed to assign role"); 
     }

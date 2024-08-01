@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json();
             if (response.ok) {
                 alert('Application submitted successfully!');
-                window.location.href="http://127.0.0.1:3004/apply.html"
+                window.location.href="apply.html"
             } else {
                 if(result.Message=="Invalid Employee" || result.Message=="Invalid Employer")
                     alert("Please Update Your Profile in Profile Section");

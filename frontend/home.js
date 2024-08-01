@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             document.getElementById('postBt').addEventListener('click', function (event) {
                 event.preventDefault();
-                window.location.href = 'http://127.0.0.1:3004/postJob.html';
+                window.location.href = 'postJob.html';
             })
 
         }
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.querySelector('.findBt').addEventListener('click', function (event) {
         event.preventDefault();
-        window.location.href = 'http://127.0.0.1:3004/findJob.html';
+        window.location.href = 'findJob.html';
     })
 
 });

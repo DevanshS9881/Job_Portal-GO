@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         alert("Please login");
-        window.location.href = 'http://127.0.0.1:3004/index5.html';
+        window.location.href = 'index5.html';
     }
 });
 
@@ -185,7 +185,7 @@ function deleteProfile(id, token) {
             alert('Profile deleted successfully!');
             sessionStorage.removeItem('token');
             // Optionally, redirect to a different page or perform other actions
-            window.location.href = 'http://127.0.0.1:3004/index5.html';
+            window.location.href = 'index5.html';
         } else {
             throw new Error('Failed to delete profile');
         }
