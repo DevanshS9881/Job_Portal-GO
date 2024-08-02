@@ -91,7 +91,11 @@ document.getElementById('googleUp').addEventListener('click', async function(eve
     const code = params.get('code');
     const state = params.get('state');
                 try {
-                    const response = await fetch('https://code-backend-backend.onrender.com/google_callback?code=' + code + '&state=' + state);
+                    const response = await fetch('https://code-backend-backend.onrender.com/google_callback?code=' + code + '&state=' + state,{
+                        method: 'GET',
+                        credentials: 'include' 
+                    });
+                
                             //     method: 'GET',
                             //     headers: {
                             //         'Content-Type': 'application/json'

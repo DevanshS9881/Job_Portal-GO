@@ -122,6 +122,8 @@ func Protected(c *fiber.Ctx) error {
 			Name:     "token",
 			Value:    t,
 			Expires:  time.Now().Add(day * 1),
+			Domain: ".onrender.com",
+			SameSite: "None",
 		})
 	
 		// Redirect to the protected page
