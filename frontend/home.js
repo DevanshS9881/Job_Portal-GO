@@ -9,11 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(';').shift();
         }
-
-         token = getCookie('token');
+         
+         if(getCookie('token')){
          sessionStorage.setItem('token',token);
+         }
     }
-    console.log(token);
+    //console.log(token);
     var logoutLink = document.getElementById('logout');
         logoutLink.addEventListener('click', function(event) {
         event.preventDefault();
