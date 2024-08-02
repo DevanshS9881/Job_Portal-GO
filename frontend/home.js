@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     profiles.forEach(({ id, profile }) => {
         var encodedProfile=encodeURIComponent(profile);
-        fetch(`http://127.0.0.1:8082/jobs/profiles/${encodedProfile}`)
+        fetch(`https://code-backend-backend.onrender.com/jobs/profiles/${encodedProfile}`)
             .then(response => response.json())
             .then(data => {
                 document.querySelector(`#${id} .jobs-count`).textContent = `${data.length} jobs`;

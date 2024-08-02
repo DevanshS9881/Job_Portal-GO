@@ -37,7 +37,7 @@ document.getElementById('signupBt').addEventListener('click', async function(eve
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const response = await fetch('http://127.0.0.1:8082/register', { 
+    const response = await fetch('https://code-backend-backend.onrender.com/register', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -60,14 +60,14 @@ document.getElementById('signupBt').addEventListener('click', async function(eve
 });
 
 // document.getElementById('googleUp').addEventListener('click', function() {
-//       window.location.href = 'http://127.0.0.1:8082/google_login'; // Update this URL to match your backend's Google OAuth URL
+//       window.location.href = 'https://code-backend-backend.onrender.com/google_login'; // Update this URL to match your backend's Google OAuth URL
 //  });
 document.getElementById('loginBt').addEventListener('click', async function(event) {
     event.preventDefault()
     const email = document.getElementById('emailLogin').value;
     const password = document.getElementById('passwordLogin').value;
 
-    const response = await fetch('http://127.0.0.1:8082/login', { 
+    const response = await fetch('https://code-backend-backend.onrender.com/login', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -86,12 +86,12 @@ document.getElementById('loginBt').addEventListener('click', async function(even
 });
 document.getElementById('googleUp').addEventListener('click', async function(event) {
     event.preventDefault();
-    window.location.href = 'http://127.0.0.1:8082/google_login'; 
+    window.location.href = 'https://code-backend-backend.onrender.com/google_login'; 
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
     const state = params.get('state');
                 try {
-                    const response = await fetch('http://127.0.0.1:8082/google_callback?code=' + code + '&state=' + state);
+                    const response = await fetch('https://code-backend-backend.onrender.com/google_callback?code=' + code + '&state=' + state);
                             //     method: 'GET',
                             //     headers: {
                             //         'Content-Type': 'application/json'
@@ -121,7 +121,7 @@ document.getElementById('googleUp').addEventListener('click', async function(eve
 
 
 
-//     const response = await fetch('http://127.0.0.1:8082/google_callback', { 
+//     const response = await fetch('https://code-backend-backend.onrender.com/google_callback', { 
 //         method: 'GET',
 //         headers: {
 //             'Content-Type': 'application/json'

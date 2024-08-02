@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded',function() {
         const id = decoded.ID;
         console.log(id);
 
-        const endpointUrl = `http://127.0.0.1:8082/addJob/${id}`;
+        const endpointUrl = `https://code-backend-backend.onrender.com/addJob/${id}`;
         const role = decoded.role;
         console.log(role);
         document.getElementById('submitUpdate').addEventListener('click',function(){

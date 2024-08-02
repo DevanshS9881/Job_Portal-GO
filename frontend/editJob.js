@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchJobDetails(jobId) {
         try {
-            const response = await fetch(`http://127.0.0.1:8082/getJob/${jobId}`, {
+            const response = await fetch(`https://code-backend-backend.onrender.com/getJob/${jobId}`, {
                 method: 'GET',
                 headers:{
                     'Authorization':`Bearer ${sessionStorage.getItem('token')}`
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const status = document.querySelector('input[name="Status"]:checked').value;
 
         try {
-            const response = await fetch(`http://127.0.0.1:8082/updateJob/${jobId}/${id}`, {
+            const response = await fetch(`https://code-backend-backend.onrender.com/updateJob/${jobId}/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

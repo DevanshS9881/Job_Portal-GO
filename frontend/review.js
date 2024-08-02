@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const decoded = jwt_decode(token);
     const employerId = decoded.ID; // Replace with the actual employer ID
     const jobId = URLParams.get('ji'); // Replace with the actual job ID
-    const endpoint = `http://127.0.0.1:8082/review/${employerId}/${jobId}`;
+    const endpoint = `https://code-backend-backend.onrender.com/review/${employerId}/${jobId}`;
 
     fetch(endpoint, {
         headers: {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const decoded = jwt_decode(token);
         const employerId = decoded.ID; // Replace with the actual employer ID
         const jobId = URLParams.get('ji'); // Replace with the actual job ID
-        const endpoint = `http://127.0.0.1:8082/review/${employerId}/${jobId}`;
+        const endpoint = `https://code-backend-backend.onrender.com/review/${employerId}/${jobId}`;
     
         fetch(endpoint, {
             headers: {
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("accept-button").addEventListener("click", () => {
                     // Handle accept action
                     const resp={Review: "Accepted"};
-                    fetch(`http://127.0.0.1:8082/accept/${application.ID}`,{
+                    fetch(`https://code-backend-backend.onrender.com/accept/${application.ID}`,{
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json' // Set the correct content type
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("reject-button").addEventListener("click", () => {
                     // Handle reject action
                     const resp={Review: "Rejected"};
-                    fetch(`http://127.0.0.1:8082/accept/${application.ID}`,{
+                    fetch(`https://code-backend-backend.onrender.com/accept/${application.ID}`,{
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json' // Set the correct content type
@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("accept-button").addEventListener("click", () => {
                 // Handle accept action
                 const resp={Review: "Accepted"};
-                fetch(`http://127.0.0.1:8082/accept/${application.ID}`,{
+                fetch(`https://code-backend-backend.onrender.com/accept/${application.ID}`,{
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json' // Set the correct content type
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("reject-button").addEventListener("click", () => {
                 // Handle reject action
                 const resp={Review: "Rejected"};
-                fetch(`http://127.0.0.1:8082/accept/${application.ID}`,{
+                fetch(`https://code-backend-backend.onrender.com/accept/${application.ID}`,{
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json' // Set the correct content type

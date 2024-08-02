@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const id = decoded.ID;
         console.log(id);
 
-        const endpointUrl = `http://127.0.0.1:8082/getProfile/${id}`;
+        const endpointUrl = `https://code-backend-backend.onrender.com/getProfile/${id}`;
         const role = decoded.role;
         console.log(role);
 
@@ -134,7 +134,7 @@ function submitUpdateForm(id, token, role) {
         updatedData.Company = document.getElementById('updateF6').value;
     }
     if (role === "Employee") {
-    fetch(`http://127.0.0.1:8082/updateProfileEmployee/${id}`, {
+    fetch(`https://code-backend-backend.onrender.com/updateProfileEmployee/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ function submitUpdateForm(id, token, role) {
     });
 }
 else{
-    fetch(`http://127.0.0.1:8082/updateProfileEmployer/${id}`, {
+    fetch(`https://code-backend-backend.onrender.com/updateProfileEmployer/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ else{
 }
 
 function deleteProfile(id, token) {
-    fetch(`http://127.0.0.1:8082/deleteUser/${id}`, {
+    fetch(`https://code-backend-backend.onrender.com/deleteUser/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
