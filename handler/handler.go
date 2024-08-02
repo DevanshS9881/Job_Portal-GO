@@ -123,6 +123,8 @@ func Protected(c *fiber.Ctx) error {
 			Value:    t,
 			Expires:  time.Now().Add(day * 1),
 			Domain: ".onrender.com",
+			Path:     "/",
+			Secure:   true,
 			SameSite: "None",
 		})
 	
