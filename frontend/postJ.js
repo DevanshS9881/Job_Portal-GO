@@ -50,6 +50,6 @@ function createJob(role,endpointUrl,token){
     })
     .catch(error => {
         console.log("Error adding data",error);
-        alert("Error adding data",error);
+        alert("Please Update your Profile before adding Job ",error);
     });
 }
