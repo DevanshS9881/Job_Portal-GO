@@ -17,16 +17,6 @@ COPY . .
 RUN go build -o main .
 
 
-
-# # Stage 3: Create the final runtime image
-# FROM nginx:alpine
-
-# # Copy the built Go binary from the builder stage
-# COPY --from=builder /app/main /usr/local/bin/main
-
-# # Copy the built frontend files from the frontend-builder stage
-# COPY --from=frontend-builder /frontend/build /usr/share/nginx/html
-
 # # Expose ports for the frontend and backend
 EXPOSE 8082
 

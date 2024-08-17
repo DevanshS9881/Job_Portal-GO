@@ -118,6 +118,11 @@ func UpdateProfileEmployer(c *fiber.Ctx) error {
 	if err:=database.Db.First(&existingUser,"id=?",userID).Error;err!=nil{
 		return c.Status(400).JSON(fiber.Map{ "Error":"User Not Found"})
 	}
+
+
+	 //checking whether the user exists or not
+	 //if exits then update the record otherwise create it
+	 
 	var existingEmployer models.Employer
 	if err:=database.Db.First(&existingEmployer,"user_id=?",userID).Error;err!=nil{
 		result := database.Db.Create(&newUser)
@@ -173,7 +178,6 @@ func ShowProfile(c *fiber.Ctx) error {
 }
 
 func DeleteUser(c *fiber.Ctx) error {
-    // Parse the user ID from the URL parameters
     userID := database.Convert(c.Params("id"))
 
     // Convert userID to uint

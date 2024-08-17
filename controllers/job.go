@@ -149,7 +149,7 @@ func DeleteJob(c *fiber.Ctx) error {
         "message": "Successfully deleted the job and related applications",
     })
 }
-
+//Returns Job by profile
 
 func GetJobByProfile(c *fiber.Ctx) error {
     profile := c.Params("profile")
@@ -176,6 +176,8 @@ func GetJobByProfile(c *fiber.Ctx) error {
 
     return c.JSON(jobs)
 }
+
+//Updates job
 
 func UpdateJob(c *fiber.Ctx) error{
 	var job models.Jobs
@@ -217,6 +219,7 @@ func UpdateJob(c *fiber.Ctx) error{
 
 }
 
+// Retruns job by id
 func ShowJob(c *fiber.Ctx) error {
 	jobID := database.Convert(c.Params("id"))
 	// if err!=nil{

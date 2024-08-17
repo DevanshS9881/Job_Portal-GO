@@ -24,8 +24,9 @@ func main(){
 	}
 	//jwt:=middlewares.AuthMiddle(config.Secret)
 	app.Use(cors.New(cors.Config{
-        AllowOrigins: "*",
+        AllowOrigins: "https://job-portal-go.onrender.com",
         AllowHeaders: "Origin, Content-Type, Accept, Authorization",
+		AllowCredentials: true,
     }))
 	config.GoogleConfig()
 	app.Static("/", "/frontend")
