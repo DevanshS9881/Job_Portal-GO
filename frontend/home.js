@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     let token="";
-    if(sessionStorage.getItem('token')){
-    token = sessionStorage.getItem('token');
+    if(localStorage.getItem('token')){
+    token = localStorage.getItem('token');
     }
     else{
         function getCookie(name) {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
          
          if(getCookie('token')){
-         sessionStorage.setItem('token',token);
+         localStorage.setItem('token',token);
          }
     }
     //console.log(token);
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         var confirmLogout = confirm("Are you sure you want to logout?");
         if (confirmLogout) {
-            sessionStorage.removeItem('token');
+            localStorage.removeItem('token');
             window.location.href = 'index5.html'; 
         }
     });

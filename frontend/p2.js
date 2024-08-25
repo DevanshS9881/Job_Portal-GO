@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     console.log(token);
 
     if (token) {
@@ -183,7 +183,7 @@ function deleteProfile(id, token) {
     .then(response => {
         if (response.ok) {
             alert('Profile deleted successfully!');
-            sessionStorage.removeItem('token');
+            localStorage.removeItem('token');
             // Optionally, redirect to a different page or perform other actions
             window.location.href = 'index5.html';
         } else {

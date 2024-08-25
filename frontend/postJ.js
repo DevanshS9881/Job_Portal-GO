@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',function() {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     console.log(token);
 
     if (token) {

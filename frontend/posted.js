@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const token=jwt_decode(sessionStorage.getItem('token'));
+    const token=jwt_decode(localStorage.getItem('token'));
     const employerId = token.ID 
     const jobList = document.getElementById('jobList');
 
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`https://code-backend-backend.onrender.com/deleteJob/${jobId}`, {
                 method: 'DELETE',
                 headers:{
-                    'Authorization':`Bearer ${sessionStorage.getItem('token')}`
+                    'Authorization':`Bearer ${localStorage.getItem('token')}`
                 }
 
             });

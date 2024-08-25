@@ -1,11 +1,11 @@
 function checkLoginStatus() {
-    if (sessionStorage.getItem('token') != null) {
+    if (localStorage.getItem('token') != null) {
         window.location.href = 'homepage.html';
     }
 }
 window.onload = function() {
     // Check if the user is already logged in
-     if (sessionStorage.getItem('token') != null) {
+     if (localStorage.getItem('token') != null) {
         alert("Session is already logged in");
         window.location.href = 'homepage.html';
     }
@@ -51,7 +51,7 @@ document.getElementById('signupBt').addEventListener('click', async function(eve
 
     const data = await response.json();
     if (response.ok) {
-        sessionStorage.setItem('token', data.token); 
+        localStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
         window.location.href = 'protected.html'; 
     } else {
@@ -77,7 +77,7 @@ document.getElementById('loginBt').addEventListener('click', async function(even
    
     const data = await response.json();
     if (response.ok) {
-        sessionStorage.setItem('token', data.token); 
+        localStorage.setItem('token', data.token); 
         alert('Signup and login successful!');
         window.location.href = 'homepage.html'; 
     } else {
@@ -106,7 +106,7 @@ document.getElementById('googleUp').addEventListener('click', async function(eve
 
                     if (data.token) {
                         
-                        sessionStorage.setItem('token', data.token);
+                        localStorage.setItem('token', data.token);
 
                         //Redirect to protected page
                        window.location.href = 'protected.html';
@@ -133,7 +133,7 @@ document.getElementById('googleUp').addEventListener('click', async function(eve
 //     });
 //     const data = await response.json();
 //     if (response.ok) {
-//         sessionStorage.setItem('token', data.token); 
+//         localStorage.setItem('token', data.token); 
 //         alert('Signup and login successful!');
 //         window.location.href = '/protected.html'; 
 //     } else {

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const URLParams = new URLSearchParams(window.location.search);
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const decoded = jwt_decode(token);
     const employerId = decoded.ID; // Replace with the actual employer ID
     const jobId = URLParams.get('ji'); // Replace with the actual job ID
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }document.addEventListener("DOMContentLoaded", () => {
         const URLParams = new URLSearchParams(window.location.search);
-        const token = sessionStorage.getItem('token');
+        const token = localStorage.getItem('token');
         const decoded = jwt_decode(token);
         const employerId = decoded.ID; // Replace with the actual employer ID
         const jobId = URLParams.get('ji'); // Replace with the actual job ID

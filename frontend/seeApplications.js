@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const decoded = jwt_decode(token);
     const employeeId = decoded.ID;
     const endpoint = `https://code-backend-backend.onrender.com/getApplications/${employeeId}`;

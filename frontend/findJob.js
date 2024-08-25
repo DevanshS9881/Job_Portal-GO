@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     console.log(token);
     var logoutLink = document.getElementById('logout');
         logoutLink.addEventListener('click', function(event) {
         event.preventDefault();
         var confirmLogout = confirm("Are you sure you want to logout?");
         if (confirmLogout) {
-            sessionStorage.removeItem('token');
+            localStorage.removeItem('token');
             window.location.href = 'index5.html'; 
         }
     });
@@ -141,7 +141,7 @@ function displayJobs(jobs, prof, location) {
 
             const applyBtn = document.createElement('button');
             applyBtn.className = 'apply-btn';
-            if(sessionStorage.getItem('token')){
+            if(localStorage.getItem('token')){
                 applyBtn.textContent = 'Apply for Job';
             applyBtn.addEventListener('click', () => {
                 window.location.href = `apply.html?jobID=${job.ID}`;
@@ -185,7 +185,7 @@ function displayJobs(jobs, prof, location) {
 }
 
 function showModal(job) {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     console.log(token);
     const decoded = jwt_decode(token);
     if(decoded.role=="Employer"){
