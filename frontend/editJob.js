@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const jobId = new URLSearchParams(window.location.search).get('ji');
-    const token=sessionStorage.getItem('token')
+    const token=localStorage.getItem('token')
     const dtoken=jwt_decode(token);
     const id = dtoken.ID ;
     if (!jobId) {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`https://code-backend-backend.onrender.com/getJob/${jobId}`, {
                 method: 'GET',
                 headers:{
-                    'Authorization':`Bearer ${sessionStorage.getItem('token')}`
+                    'Authorization':`Bearer ${localStorage.getItem('token')}`
                 }
                 });
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
                 body: JSON.stringify({
                     Profile: profile,
