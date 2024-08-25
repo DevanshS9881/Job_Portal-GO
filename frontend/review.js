@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
             document.getElementById("employee-name").textContent = `Name: ${application.Employee.Name}`;
             document.getElementById("employee-city").textContent = `City: ${application.Employee.City}`;
-            document.getElementById("employee-birthdate").textContent = `Birth Date: ${application.Employee.BirthDate}`;
+            document.getElementById("employee-birthdate").textContent = `Birth Date: ${application.Employee.Birth_Date}`;
             //document.getElementById("employee-age").textContent = `Age: ${application.Employee.Age}`;
             document.getElementById("employee-bio").textContent = `Bio: ${application.Employee.Bio}`;
             document.getElementById("employee-skill").textContent = `Skill: ${application.Employee.Skill}`;
